@@ -6,7 +6,9 @@
 - [Andrew Nease](bios/andrew-professional-bio.md) 
   - Major : Computer Science
   - Email: neaseaw@mail.uc.edu
-
+- [Daniel Wood](bios/wooddj-bio.md)
+  - Major : Computer Science
+  - Email : wooddj@mail.uc.edu
 
 ### Faculty Advisor
 - **TBD**
