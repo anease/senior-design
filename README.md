@@ -15,4 +15,4 @@
 
 
 ### Project Description
-Our team is developing a browser extension that will empower individuals to fact check statments on the web.
+Our team is developing a browser extension that will empower individuals to fact check statements on the web.
