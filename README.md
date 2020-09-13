@@ -9,6 +9,9 @@
 - [Daniel Wood](bios/wooddj-bio.md)
   - Major : Computer Science
   - Email : wooddj@mail.uc.edu
+- [Lando Slack](bios/lando-professional-bio.md)
+  - Major : Computer Science
+  - Email : slacklj@mail.uc.edu
 
 ### Faculty Advisor
 - **TBD**
