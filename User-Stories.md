@@ -4,4 +4,4 @@
 
 - As a journalist, I want to quickly fact-check my online research so that I can publish new stories as quickly as possible without sacrificing factual integrity.
 
-- 
+- As an academic writer, I want to quickly fact-check statements so that I can get a sense for a source's reliability without the need for extensive research.
