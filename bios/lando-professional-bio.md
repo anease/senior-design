@@ -21,6 +21,8 @@ Phone: 513-638-3032
         > Consulted on mass mailing list deployment & CASL compliance
 
 ## Project Sought
-    My ideal capstone is one in which I can learn a significant amount while also being meaningfully productive. I have much interest in Artificial Intelligence, cybersecurity, and web application development, and I would love to pursue a project in any of those directions among other.
+    My ideal capstone is one in which I can learn a significant amount while also being meaningfully productive.
+    I have much interest in Artificial Intelligence, cybersecurity, and web application development. 
+    I would love to pursue a project in any of those directions among other.
 
     
