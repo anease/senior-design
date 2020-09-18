@@ -1,6 +1,6 @@
 # Senior Design | CS 2020-2021
 
-## ****Team Name Placeholder***
+## ***Deception Detective Fact-Checker***
 
 ### Team Members
 - [Andrew Nease](bios/andrew-professional-bio.md) 
