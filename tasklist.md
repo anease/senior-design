@@ -1,11 +1,16 @@
 # Task List:
 
 - [] | Research web extensions and their applications
-- [] | Research existing solutions for identifying factual statements
-- [] | Research webpage layouts in regards to scanning for information (pulling text to fact-check)
-- [] | Research Pagerank algorithm and its applications
+    - [] | Document research findings and share with the group
 
-- [] | Document research findings and share with the group
+- [] | Research existing solutions for identifying factual statements
+    - [] | Document research findings and share with the group
+
+- [] | Research webpage layouts in regards to scanning for information (pulling text to fact-check)
+    - [] | Document research findings and share with the group
+
+- [] | Research Pagerank algorithm and its applications
+    - [] | Document research findings and share with the group
 
 - [] | Design layout(s) for how the extension will look during the tool's different stages
 - [] | Design how the highlighted view for the factual statements should look (before fact-checking)
@@ -18,5 +23,5 @@
     - [] | Develop prototype for fact-checking a single statement
 - [] | Develop process for applying the fact-checking algorithm to each statement from the webpage
 - [] | Develop and/or find sample webpages to test the tool on
-
+- [] | Develop unit tests
 - [] | Test the tool on the sample webpages
