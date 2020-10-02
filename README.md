@@ -16,8 +16,13 @@
   - Email : slacklj@mail.uc.edu
 
 ### Faculty Advisor
-- **TBD**
-
+- Prof. Yiming Hu
+  - Email: huyg@ucmail.uc.edu
 
 ### Project Description
 Our team is developing a browser extension that will empower individuals to fact check statements on the web.
+
+### Project Links
+- [Timeline / Milestones](timeline.md)
+- [Tasklist](tasklist.md)
+- [Effort Matrix](effort_matrix.md)
