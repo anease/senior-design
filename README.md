@@ -17,6 +17,7 @@
 
 ### Faculty Advisor
 - Prof. Yiming Hu
+  
   - Email: huyg@ucmail.uc.edu
 
 ### Project Description
