@@ -38,9 +38,12 @@
 - Research Pagerank algorithm and its applications
     - Look into other inference methods for statements
     - Document research findings and share with the group
+    - Hours: 6
 - Develop algorithm for fact-checking statements
     - Develop prototype for fact-checking a single statement
+    - Hours: 10
 - Develop process for applying the fact-checking algorithm to each statement from the webpage
+    - Hours: 2
 - Develop unit tests
     - Hours: 1
 - Test the tool on the sample webpages
