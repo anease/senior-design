@@ -27,3 +27,4 @@ Our team is developing a browser extension that will empower individuals to fact
 - [Timeline / Milestones](timeline.md)
 - [Tasklist](tasklist.md)
 - [Effort Matrix](effort_matrix.md)
+- [Midterm Presentation](https://youtu.be/DVbeR4Ez9uc)
