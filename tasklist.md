@@ -3,10 +3,10 @@
 ## Daniel
 - Research existing solutions for identifying factual statements
     - Document research findings and share with the group
-    - Hours: 4
+    - Hours: 8
 - Develop algorithm for identifying factual statements on a webpage
     - Develop prototype that returns a list of statements from a website
-    - Hours: 12
+    - Hours: 20
 - Develop unit tests
     - Hours: 1
 - Test the tool on the sample webpages
