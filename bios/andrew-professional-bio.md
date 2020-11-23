@@ -5,7 +5,7 @@ Email: neaseaw@mail.uc.edu
 
 ## Professional Experience
 
-**After graduation, I will be joining Capital One's TDP program**
+**After graduation, I will be joining Capital One's TDP program in Richmond, VA**
 
 ### **General Electric** | Cincinnati, OH 
 #### *Digital Technology Intern - January 2020 to August 2020* 
