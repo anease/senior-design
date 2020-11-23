@@ -42,7 +42,7 @@ Our team is developing a browser extension that will allow users to quickly iden
   
 - Self-Assessment Essays
   - [Andrew Self-Assessment](homework/assignment-3-individual-assessment/andrew-self-assessment.pdf)
-  - [Lando Self-Assessment](homework/assignment-3-individual-assessment/lanod-self-assessment.pdf)
+  - [Lando Self-Assessment](homework/assignment-3-individual-assessment/lando-self-assessment.pdf)
   - [Daniel Self-Assessment](homework/assignment-3-individual-assessment/daniel-self-assessment.pdf)
   
 - [Midterm Presentation (PDF)](midterm-presentation/midterm-presentation.pdf)
