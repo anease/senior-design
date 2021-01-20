@@ -14,3 +14,4 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
         console.log(info.selectionText);
         //factCheck(info.selectionText);
 });
+
