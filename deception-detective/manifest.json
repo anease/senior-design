@@ -2,13 +2,18 @@
     "name": "Deception Detective",
     "version": "0.1",
     "description": "Browser Integrated Fact Checking!",
+    "manifest_version": 2,
     "permissions": ["contextMenus"],
     "background": {
         "scripts": ["background.js"],
         "persistent": false
     },
-    "icons": { "16": "assests/icon16.png",
+    "browser_action": {
+        "default_title": "Deception Detective",
+        "default_popup": "popup.html"
+    },
+    "icons": { 
+        "16": "assests/icon16.png",
         "48": "assests/icon48.png",
-       "128": "assests/icon128.png" },
-    "manifest_version": 2
+       "128": "assests/icon128.png" }
 }

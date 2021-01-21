@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>Deception Detective</title>
+    <style>
+
+      html, body {
+        text-align: center;
+        background-color: rgb(211, 211, 211, 0.8);
+        height: 96.2%;
+      }
+
+      h2, p {
+        margin: 0;
+      }
+
+      .header img {
+        display:flex;
+        float: left;
+        width: 40px;
+        padding: 0.25em;
+      }
+
+      .header h2 {
+        display:flex;
+        position: relative;
+        font-family: Courier, monospace;
+      }
+
+      .header {
+          width: 150px;
+      }
+
+      button {
+        outline: none;
+        font-family:Courier, monospace;
+      }
+
+      button:hover {
+        outline: #F58F29 solid;
+      }
+      
+      .buttonDiv {
+        padding-top: 10px;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="header">
+        <img src='./assests/icon128.png' id='icon'>
+        <h2>Deception Detective<h2>
+    </div>
+
+    <div class="buttonDiv">
+        <button id='factCheckPage'>Fact-Check This Page</button>
+    </div>
+    
+    <!-- link to non-persistent background script -->
+    <script src="popup.js"></script>
+
+  </body>
+
+</html>
