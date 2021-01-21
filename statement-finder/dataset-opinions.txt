@@ -1,0 +1,24 @@
+opinion| I like ice cream!
+opinion| The original Star Wars movie is the best one.
+opinion| I don't like Iron Man 3.
+opinion| Brocolli is not a bad vegetable.
+opinion| I prefer to be early over being late.
+opinion| I feel tired.
+opinion| I want to go outside.
+opinion| I think I will go for a walk.
+opinion| In my opinion, Iron Man is an underrated movie.
+opinion| I like fried chicken.
+opinion| I like to put just a little bit of milk into my coffee.
+opinion| Bohemian Rhapsody is an overrated song.
+opinion| I like just about any music genre.
+opinion| Swimming is probably my favorite for, of excercise.
+opinion| I like dogs.
+opinion| I don't like cats.
+opinion| My favorite breed of dog is golden retriever.
+opinion| The concert was fun!
+opinion| I prefer using pencils over pens.
+opinion| It's cold in here!
+opinion| The soup was too hot.
+opinion| I like coffee more than tea.
+opinion| This class is fun!
+opinion| Ham tastes better to me than turkey does.

@@ -1,0 +1,114 @@
+statement| The temperature is 30 degrees today.
+statement| The meeting starts at 10 a.m.
+statement| We will meet for 30 minutes today.
+statement| Cheetahs can run as fast as 80 miles per hour!
+statement| I paid $100 for these concert tickets.
+statement| Mr. Smith was our guide last time.
+statement| Columbus is the capitol of Ohio.
+statement| Natural language understanding is a subsection of natural language processing.
+statement| Yesterday was Monday.
+statement| Topeka is the capital of Kansas.
+statement| Yesterday was Tuesday.
+statement| Albany is the capital of New York.
+statement| Yesterday was Wednesday.
+statement| Yesterday was Thursday.
+statement| Yesterday was Friday.
+statement| Honolulu is the capital of Hawaii.
+statement| Yesterday was Saturday.
+statement| Yesterday was Sunday.
+statement| Montgomery is the capital of Alabama.
+statement| Today is Monday.
+statement| Today is Tuesday.
+statement| Dover is the capital of Delaware.
+statement| Today is Wednesday.
+statement| Sprinfield is the capital of Illinois.
+statement| Today is Thursday.
+statement| Raleigh is the capital of North Carolina.
+statement| Today is Friday.
+statement| Today is Saturday.
+statement| Today is Sunday.
+statement| To ensure the Queen receives her food on time, the clocks in the royal kitchen at Windsor Castle are set five minutes ahead.
+statement| Duncan Hines was a real person.
+statement| He was a popular restaurant critic who also wrote a book of hotel recommendations.
+statement| Lake Hillier in Australia is nearly as salty as the Dead Sea.
+statement| Scientists suspect that some salt-loving bacteria (chiefly Salinibacter ruber) and algae give the lake its pink hue.
+statement| A “contronym” is a word that’s its own opposite.
+statement| Nineteenth-century British surgeon George Merryweather believed leeches could predict the weather.
+statement| His "tempest prognosticator," displayed at the Great Exhibition in 1851, failed to catch on.
+statement| Wendy's founder Dave Thomas dropped out of high school but picked up his GED in 1993.
+statement| His GED class voted him Most Likely to Succeed.
+statement| Bacon was used to make explosives during World War II.
+statement| Goldfish can distinguish the music of one composer from another.
+statement| The position dogs assume when they're inviting other pets to play is called a play bow.
+statement| Elvis Presley’s manager sold “I Hate Elvis” badges as a way to make money off of people who weren’t buying his merchandise.
+statement| Juicy Fruit gum, an early version of Cracker Jack, and the Ferris Wheel all made their debuts at the 1893 Chicago World’s Fair.
+statement| The AMC Gremlin was released on April 1, 1970.
+statement| AMC advertised it saying “competitors will find there is nothing ‘April Fool like’ about this car.”
+statement| A newborn giant panda is about the size of a stick of butter.
+statement| Beauty and the Beast was the first animated film to be nominated for Best Picture.
+statement| It lost to The Silence of the Lambs.
+statement| Ray Bradbury wrote the first draft of Fahrenheit 451 on a rented typewriter in the basement of the UCLA library in just nine days.
+opinion| I like ice cream!
+opinion| The original Star Wars movie is the best one.
+opinion| I don't like Iron Man 3.
+opinion| Brocolli is not a bad vegetable.
+opinion| I prefer to be early over being late.
+opinion| I feel tired.
+opinion| I want to go outside.
+opinion| I think I will go for a walk.
+opinion| In my opinion, Iron Man is an underrated movie.
+opinion| I like fried chicken.
+opinion| I like to put just a little bit of milk into my coffee.
+opinion| Bohemian Rhapsody is an overrated song.
+opinion| I like just about any music genre.
+opinion| Swimming is probably my favorite for, of excercise.
+opinion| I like dogs.
+opinion| I don't like cats.
+opinion| My favorite breed of dog is golden retriever.
+opinion| The concert was fun!
+opinion| I prefer using pencils over pens.
+opinion| It's cold in here!
+opinion| The soup was too hot.
+opinion| I like coffee more than tea.
+opinion| This class is fun!
+opinion| Ham tastes better to me than turkey does.
+nonstatement| Smile.
+nonstatement| Who are you?
+nonstatement| Where did he go?
+nonstatement| Fill up the gas tank!
+nonstatement| Good morning!
+nonstatement| See you later!
+nonstatement| Goodbye.
+nonstatement| Why did you do that?
+nonstatement| Why did he do that?
+nonstatement| When is the meeting?
+nonstatement| Who killed Abraham Lincoln?
+nonstatement| No way!
+nonstatement| Shine my shoes!
+nonstatement| Of whom do you speak and for what purpose?
+nonstatement| Good afternoon!
+nonstatement| Good evening!
+nonstatement| Where did you find my keys?
+nonstatement| Why are you lying?
+nonstatement| Could you buy me some ice cream?
+nonstatement| Can you buy me some ice cream?
+nonstatement| Follow these simple steps to keep your stress under control.
+nonstatement| Stressed out?
+nonstatement| Grumpy?
+nonstatement| Tired all the time?
+nonstatement| Tell me!
+nonstatement| Which app seemed like magic the first time you used it?
+nonstatement| Please pour me some coffee.
+nonstatement| What will the future of education be?
+nonstatement| Would you please pass the salt?
+nonstatement| What is the most annoying habit someone can have?
+nonstatement| Get the mail, please.
+nonstatement| What countries have you traveled to?
+nonstatement| Close the door!
+nonstatement| What is your favorite holiday?
+nonstatement| Please drive away.
+nonstatement| Which do you prefer, popular music or relatively unknown music?
+nonstatement| Drive away!
+nonstatement| Do you like reality TV shows?
+nonstatement| Why or why not?
+nonstatement| If so, which ones?
