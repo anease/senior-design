@@ -16,5 +16,7 @@ This tool takes text from a given web page, parses it, and returns a list of sta
     - This dataset is a list of statements to be built upon, then added to the aggregate training dataset (either dataset-binary or dataset).
 - dataset.txt
     - This dataset is a combined list of statements, opinions, and nonstatements. This dataset may replace dataset-binary in a future iteration.
+- research-and-decisions.md
+    - Markdown file containing the research notes relevant to the tool as well as a list of decisions that were made about vasious aspects of the tool.
 - statement_finder_prototype.py
     - This tool finds and determines the statements from text on a webpage.
