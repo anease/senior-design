@@ -63,10 +63,8 @@ tfidf_vect = TfidfVectorizer(analyzer=clean_text)
 x_tfidf = tfidf_vect.fit_transform(data['body_text'])
 x_tfidf_feat = pd.DataFrame(x_tfidf.toarray())
 
-#Split the data into x/y train/test sets
-# x_train, x_test, y_train, y_test = train_test_split(x_tfidf_feat, data['label'], test_size=0.2)
-x_train = x_tfidf_feat[0:train_size]
-y_train = data['label'][0:train_size]
+#Split the data into x/y train/test sets, randomize the order of the training set
+x_train, x_test, y_train, y_test = train_test_split(x_tfidf_feat[0:train_size], data['label'][0:train_size], train_size=train_size-1)
 x_test = x_tfidf_feat[-test_size:]
 y_test = data['label'][-test_size:]
 
@@ -83,6 +81,8 @@ for i in range(test_size):
         returned_statements.append(input_text['body_text'][i])
 
 #Results
+print("-"*100)
+print("Results:")
 print(input_text)
 print("Returned statements: ", returned_statements)
 
