@@ -1,6 +1,6 @@
 # Part 1: Description of Overall Test Plan
 
-
+<br>
 
 # Part 2: Test Case Descriptions
 ## Web Scraper Tests (WS):
@@ -43,6 +43,48 @@
     - Functional
     - Unit
 
+## Chrome Extension Tests (CE):
+- CE1
+  - Test that extension toolbar pop-up activates appropriately
+  - Click on extension toolbar icon and ensure that the pop-up is fully visable and buttons are clickable
+  - Input: Click
+  - Output: Superficial extension operation
+  - Normal
+  - Whitebox
+  - Function
+  - Integration
+
+- CE2
+  - Test that full page fact check feature is activated through pop-up button press
+  - Click on extension toolbar icon, click "Fact-Check This Page" button
+  - Input: Click
+  - Output: Full page fact-check assessment
+  - Normal
+  - Whitebox
+  - Functional
+  - Integration
+
+- CE3
+  - Test that context menu displays "Fact-Check" option when highlighting text
+  - Highlight and right-click text, ensure "Fact-Check" option is available
+  - Input: Click
+  - Output: Superficial extension operation
+  - Normal
+  - Whitebox
+  - Function
+  - Integration
+
+- CE4
+  - Test that single statement fact check feature is activated through context menu
+  - Highlight and right-click text, click "Fact-Check" option
+  - Input: Click
+  - Output: Single statement fact-check assessment
+  - Normal
+  - Whitebox
+  - Functional
+  - Integration
+
+<br>
 
 # Part 3: Test Case Matrix
 | Name | Normal/Abnormal | Blackbox/Whitebox | Functional/Performance | Unit/Integration |
@@ -51,3 +93,7 @@
 | SF1 | Normal | Whitebox | Functional | Unit |
 | SF2 | Boundary | Whitebox | Functional | Unit |
 | SF3 | Boundary | Whitebox | Functional | Unit |
+| CE1 | Normal | Whitebox | Functional | Integration |
+| CE2 | Normal | Whitebox | Functional | Integration |
+| CE3 | Normal | Whitebox | Functional | Integration |
+| CE4 | Normal | Whitebox | Functional | Integration |
