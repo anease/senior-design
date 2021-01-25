@@ -1,4 +1,5 @@
 # Part 1: Description of Overall Test Plan
+The overall goal of our testing plan is to ensure that the tool acts as expected in what we see as normal running conditions. As such, most of our tests use normal cases and a few use boundary cases. Additionally, the majority of our tests are unit tests to ensure that each component is working properly and the remaining are integration tests to ensure that the interactions between the various tools are running smoothly.
 
 <br>
 
