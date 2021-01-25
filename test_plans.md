@@ -13,6 +13,15 @@
     - Whitebox
     - Functional 
     - Unit test
+- WS2
+  - Test that the text highlight input tool is working properly
+  - Test that when using the option to highlight text to fact-check, the proper text is being passed along to the backend
+  - Input: specific highlighted text from a webpage
+  - Output: array containing the precisely highlighted text
+  - Normal
+  - Whitebox
+  - Functional
+  - Unit
 
 ## Statement Finder Tests (SF):
 - SF1
@@ -38,6 +47,24 @@
     - Test that the statement finder tool is not including questions in the output
     - Input: text array with questions
     - Output: array of statements that doesn't include questions
+    - Boundary
+    - Whitebox
+    - Functional
+    - Unit
+- SF4
+    - Test that the statement finder tool is not finding commands
+    - Test that the statement finder tool is not including commands in the output
+    - Input: text array with commands
+    - Output: array of statements that doesn't include commands
+    - Boundary
+    - Whitebox
+    - Functional
+    - Unit
+- SF5
+    - Test that the statement finder tool is not finding salutations (such as "Good Morning!")
+    - Test that the statement finder tool is not including salutations in the output
+    - Input: text array with salutations
+    - Output: array of statements that doesn't include salutations
     - Boundary
     - Whitebox
     - Functional
@@ -90,9 +117,12 @@
 | Name | Normal/Abnormal | Blackbox/Whitebox | Functional/Performance | Unit/Integration |
 | --- | ---| --- | --- | --- |
 | WS1 | Normal | Whitebox | Functional | Unit |
+| WS2 | Normal | Whitebox | Functional | Unit |
 | SF1 | Normal | Whitebox | Functional | Unit |
 | SF2 | Boundary | Whitebox | Functional | Unit |
 | SF3 | Boundary | Whitebox | Functional | Unit |
+| SF4 | Boundary | Whitebox | Functional | Unit |
+| SF5 | Boundary | Whitebox | Functional | Unit |
 | CE1 | Normal | Whitebox | Functional | Integration |
 | CE2 | Normal | Whitebox | Functional | Integration |
 | CE3 | Normal | Whitebox | Functional | Integration |
