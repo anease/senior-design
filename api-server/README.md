@@ -18,11 +18,11 @@ On Windows
 ## Test Endpoint
 In a separate Terminal than that which is now running the local Flask server
 ```
-andrew@macbook-pro:~ $ curl -d "data=fact" http://127.0.0.1:5000/factcheck 
+andrew@macbook-pro:~ $ curl --header "Content-Type: application/json" -d '{"data":"fact"}' http://127.0.0.1:5000/factcheck 
 
 FACT!
 
-andrew@macbook-pro:~ $ curl -d "data=fakenews" http://127.0.0.1:5000/factcheck 
+andrew@macbook-pro:~ $ curl --header "Content-Type: application/json" -d '{"data":"fakenews"}' http://127.0.0.1:5000/factcheck  
 
 FALSE
 ```
