@@ -112,6 +112,9 @@ The overall goal of our testing plan is to ensure that the tool acts as expected
   - Functional
   - Integration
 
+## API Tests (API):
+
+
 <br>
 
 # Part 3: Test Case Matrix
