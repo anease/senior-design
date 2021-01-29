@@ -53,7 +53,10 @@ data = data.append(input_text, ignore_index=True) #Add the input text to the tra
 def clean_text(text): #Method for cleaning text in preparation for vectorizing
     text = "".join([word.lower() for word in text if word not in string.punctuation])
     tokens = re.findall('\w+', text)
-    text = [wn.lemmatize(word) for word in tokens if word not in stopwords]
+    # text = [wn.lemmatize(word) for word in tokens if word not in stopwords] #lemmatize and remove stopwords
+    # text = [wn.lemmatize(word) for word in tokens] #lemmatize
+    # text = [word for word in tokens if word not in stopwords] #remove stopwords
+    text = [word for word in tokens] #no lemmatize and no removing stopwords
     return text
 
 input_text['clean_text'] = [clean_text(text) for text in input_text['body_text']] #Debug line

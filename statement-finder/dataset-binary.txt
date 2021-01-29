@@ -48,6 +48,21 @@ statement| A newborn giant panda is about the size of a stick of butter.
 statement| Beauty and the Beast was the first animated film to be nominated for Best Picture.
 statement| It lost to The Silence of the Lambs.
 statement| Ray Bradbury wrote the first draft of Fahrenheit 451 on a rented typewriter in the basement of the UCLA library in just nine days.
+statement| Your heart pumps blood through your body.
+statement| The leaves of growing plants are usually green.
+statement| People use their legs to walk.
+statement| Some people keep dogs as pets.
+statement| 1 liter of water weighs 1 kilogram.
+statement| There are 50 states in the United States.
+statement| Water always comes from the sky.
+statement| The capital of Ukraine is Kyiv.
+statement| The third president of the United States was Thomas Jefferson.
+statement| Bali tigers are extinct.
+statement| Sir Ian McKellan played Gandalf in the Lord of the Rings and the Hobbit franchises.
+statement| King John of England signed the Magna Carta in 1215.
+statement| The United States was established in 1776.
+statement| The pH levels in acids are lower than pH levels in alkalines.
+statement| Beethoven had a reputation as a virtuoso pianist.
 nonstatement| I like ice cream!
 nonstatement| The original Star Wars movie is the best one.
 nonstatement| I don't like Iron Man 3.
@@ -72,6 +87,35 @@ nonstatement| The soup was too hot.
 nonstatement| I like coffee more than tea.
 nonstatement| This class is fun!
 nonstatement| Ham tastes better to me than turkey does.
+nonstatement| Italian food tastes the best.
+nonstatement| French food tastes the best.
+nonstatement| Reading is boring.
+nonstatement| Reading is fun.
+nonstatement| Winter is the best season.
+nonstatement| Summer is the best season.
+nonstatement| The cake tastes delicious.
+nonstatement| She looks sad.
+nonstatement| He is childish.
+nonstatement| My history teacher hates me.
+nonstatement| The movie was boring.
+nonstatement| To solve traffic, it is better to invest in subways and trains than in road widening programs.
+nonstatement| The TV shows in ABS-CBN are more entertaining than the shows of other channels.
+nonstatement| It is better to live in Singapore than in Japan.
+nonstatement| The internet is being used by teenagers to waste their time in social media.
+nonstatement| I prefer using Facebook to Twitter because Twitter has limited characters per caption.
+nonstatement| Nike is more useful than Adidas.
+nonstatement| Liza Soberano is more beautiful than Janella Salvador.
+nonstatement| Watching someone dance is more entertaining than watching someone sing.
+nonstatement| Traveling in Asia is more fun than traveling in Europe.
+nonstatement| I believe that the greatest president in the USA is Barack Obama.
+nonstatement| The legal age for drinking should be lowered to 16.
+nonstatement| London is the best city in the world.
+nonstatement| Today seems hotter than yesterday
+nonstatement| That was a good movie.
+nonstatement| Strawberries taste better blueberries.
+nonstatement| George Clooney is the sexiest actor alive.
+nonstatement| The death penalty is wrong.
+nonstatement| Beethoven’s reputation as a virtuoso pianist is overrated.
 nonstatement| Smile.
 nonstatement| Who are you?
 nonstatement| Where did he go?
@@ -112,3 +156,28 @@ nonstatement| Drive away!
 nonstatement| Do you like reality TV shows?
 nonstatement| Why or why not?
 nonstatement| If so, which ones?
+nonstatement| Pass the salt.
+nonstatement| Move out of my way!
+nonstatement| Shut the front door.
+nonstatement| Find my leather jacket.
+nonstatement| Be there at five.
+nonstatement| Clean your room.
+nonstatement| Complete these by tomorrow.
+nonstatement| Consider the red dress.
+nonstatement| Wait for me.
+nonstatement| Get out!
+nonstatement| Make sure you pack warm clothes.
+nonstatement| Choose Eamonn, not Seamus.
+nonstatement| Please be quiet.
+nonstatement| Be nice to your friends.
+nonstatement| Play ball!
+nonstatement| Is it cold outside?
+nonstatement| Are you feeling better?
+nonstatement| Was the film good?
+nonstatement| Did you like it?
+nonstatement| Does it taste good?
+nonstatement| What is your name?
+nonstatement| What's the time?
+nonstatement| Where is the toilet please?
+nonstatement| Where shall we go?
+nonstatement| How do you open this?
