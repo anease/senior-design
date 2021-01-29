@@ -88,19 +88,70 @@ print("Returned statements: ", returned_statements)
 
 
 #---------------------------------------------------------------------------#
-# Model Comparison and Grid Search for finding parameters
+# Model Comparison and Grid Search for finding optimal parameters
 #---------------------------------------------------------------------------#
 
-# #Preparing the vector for the training/testing
-# tfidf_vect = TfidfVectorizer(analyzer=clean_text)
-# tfidf_vect_fit = tfidf_vect.fit(x_train['body_text'])
-# tfidf_train = tfidf_vect_fit.transform(x_train['body_text'])
-# tfidf_test = tfidf_vect_fit.transform(x_test['body_text'])
+# import nltk
+# import pandas as pd
+# import re
+# from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+# import string
+# from sklearn.ensemble import RandomForestClassifier
+# from sklearn.model_selection import GridSearchCV
 
-# #For comparing count vector to tfidf vector
+# stopwords = nltk.corpus.stopwords.words('english')
+# ps = nltk.PorterStemmer()
+
+# # data = pd.read_csv("SMSSpamCollection.tsv", sep='\t')
+# data = pd.read_csv('dataset-binary.txt', sep='|')
+# data.columns = ['label', 'body_text']
+
+# def count_punct(text):
+#     count = sum([1 for char in text if char in string.punctuation])
+#     return round(count/(len(text) - text.count(" ")), 3)*100
+
+# data['body_len'] = data['body_text'].apply(lambda x: len(x) - x.count(" "))
+# data['punct%'] = data['body_text'].apply(lambda x: count_punct(x))
+
+# def clean_text(text):
+#     text = "".join([word.lower() for word in text if word not in string.punctuation])
+#     tokens = re.split('\W+', text)
+#     text = [ps.stem(word) for word in tokens if word not in stopwords]
+#     return text
+
+# # TF-IDF
+# tfidf_vect = TfidfVectorizer(analyzer=clean_text)
+# X_tfidf = tfidf_vect.fit_transform(data['body_text'])
+# X_tfidf_feat = pd.concat([data['body_len'], data['punct%'], pd.DataFrame(X_tfidf.toarray())], axis=1)
+
+# # CountVectorizer
 # count_vect = CountVectorizer(analyzer=clean_text)
-# x_count = count_vect.fit_transform(data['body_text'])
-# x_count_feat = pd.DataFrame(x_count.toarray())
+# X_count = count_vect.fit_transform(data['body_text'])
+# X_count_feat = pd.concat([data['body_len'], data['punct%'], pd.DataFrame(X_count.toarray())], axis=1)
+
+# X_count_feat.head()
+
+# #Tfidf grid search
+# rf = RandomForestClassifier()
+# param = {'n_estimators': [10, 150, 300], 'max_depth': [30, 60, 90, None]}
+
+# gs = GridSearchCV(rf, param, cv=5, n_jobs=-1)
+# gs_fit = gs.fit(X_tfidf_feat, data['label'])
+# print(pd.DataFrame(gs_fit.cv_results_).sort_values('mean_test_score', ascending=False)[0:5])
+
+# #Count grid search
+# rf = RandomForestClassifier()
+# param = {'n_estimators': [10, 150, 300], 'max_depth': [30, 60, 90, None]}
+
+# gs = GridSearchCV(rf, param, cv=5, n_jobs=-1)
+# gs_fit = gs.fit(X_count_feat, data['label'])
+# print(pd.DataFrame(gs_fit.cv_results_).sort_values('mean_test_score', ascending=False)[0:5])
+
+
+
+
+
+
 
 
 # #Random Forest Classifier
@@ -121,20 +172,4 @@ print("Returned statements: ", returned_statements)
 
 # print('Precision: {} / Recall: {} / Accuracy: {}'.format(round(precision, 3), round(recall, 3), round((y_pred==y_test).sum() / len(y_pred), 3)))
 
-
-# #Grid Search model tests
-
-# #Random Forest Grid Search
-# rf = RandomForestClassifier()
-# param_rf = {'n_estimators': [400, 500, 600], 'max_depth': [25]}
-# gs = GridSearchCV(rf, param_rf, cv=5, n_jobs=-1)
-# gs_fit = gs.fit(x_tfidf_feat, data['label'])
-# print(pd.DataFrame(gs_fit.cv_results_).sort_values('mean_test_score', ascending=False)[0:5])
-
-# #Gradient Boosting Grid Search
-# gb = GradientBoostingClassifier()
-# param_gb = {'n_estimators': [10, 150, 300], 'max_depth': [25], 'learning_rate': [0.05, 0.1, 0.15]}
-# gs_gb = GridSearchCV(gb, param_gb, cv=5, n_jobs=-1)
-# cv_fit = gs_gb.fit(x_tfidf_feat, data['label'])
-# print(pd.DataFrame(cv_fit.cv_results_).sort_values('mean_test_score', ascending=False)[0:5])
 
