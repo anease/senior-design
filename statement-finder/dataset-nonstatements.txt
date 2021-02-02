@@ -38,3 +38,28 @@ nonstatement| Drive away!
 nonstatement| Do you like reality TV shows?
 nonstatement| Why or why not?
 nonstatement| If so, which ones?
+nonstatement| Pass the salt.
+nonstatement| Move out of my way!
+nonstatement| Shut the front door.
+nonstatement| Find my leather jacket.
+nonstatement| Be there at five.
+nonstatement| Clean your room.
+nonstatement| Complete these by tomorrow.
+nonstatement| Consider the red dress.
+nonstatement| Wait for me.
+nonstatement| Get out!
+nonstatement| Make sure you pack warm clothes.
+nonstatement| Choose Eamonn, not Seamus.
+nonstatement| Please be quiet.
+nonstatement| Be nice to your friends.
+nonstatement| Play ball!
+nonstatement| Is it cold outside?
+nonstatement| Are you feeling better?
+nonstatement| Was the film good?
+nonstatement| Did you like it?
+nonstatement| Does it taste good?
+nonstatement| What is your name?
+nonstatement| What's the time?
+nonstatement| Where is the toilet please?
+nonstatement| Where shall we go?
+nonstatement| How do you open this?

@@ -22,3 +22,32 @@ opinion| The soup was too hot.
 opinion| I like coffee more than tea.
 opinion| This class is fun!
 opinion| Ham tastes better to me than turkey does.
+opinion| Italian food tastes the best.
+opinion| French food tastes the best.
+opinion| Reading is boring.
+opinion| Reading is fun.
+opinion| Winter is the best season.
+opinion| Summer is the best season.
+opinion| The cake tastes delicious.
+opinion| She looks sad.
+opinion| He is childish.
+opinion| My history teacher hates me.
+opinion| The movie was boring.
+opinion| To solve traffic, it is better to invest in subways and trains than in road widening programs.
+opinion| The TV shows in ABS-CBN are more entertaining than the shows of other channels.
+opinion| It is better to live in Singapore than in Japan.
+opinion| The internet is being used by teenagers to waste their time in social media.
+opinion| I prefer using Facebook to Twitter because Twitter has limited characters per caption.
+opinion| Nike is more useful than Adidas.
+opinion| Liza Soberano is more beautiful than Janella Salvador.
+opinion| Watching someone dance is more entertaining than watching someone sing.
+opinion| Traveling in Asia is more fun than traveling in Europe.
+opinion| I believe that the greatest president in the USA is Barack Obama.
+opinion| The legal age for drinking should be lowered to 16.
+opinion| London is the best city in the world.
+opinion| Today seems hotter than yesterday
+opinion| That was a good movie.
+opinion| Strawberries taste better blueberries.
+opinion| George Clooney is the sexiest actor alive.
+opinion| The death penalty is wrong.
+opinion| Beethoven’s reputation as a virtuoso pianist is overrated.

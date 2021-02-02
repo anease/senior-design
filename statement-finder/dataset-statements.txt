@@ -48,3 +48,18 @@ statement| A newborn giant panda is about the size of a stick of butter.
 statement| Beauty and the Beast was the first animated film to be nominated for Best Picture.
 statement| It lost to The Silence of the Lambs.
 statement| Ray Bradbury wrote the first draft of Fahrenheit 451 on a rented typewriter in the basement of the UCLA library in just nine days.
+statement| Your heart pumps blood through your body.
+statement| The leaves of growing plants are usually green.
+statement| People use their legs to walk.
+statement| Some people keep dogs as pets.
+statement| 1 liter of water weighs 1 kilogram.
+statement| There are 50 states in the United States.
+statement| Water always comes from the sky.
+statement| The capital of Ukraine is Kyiv.
+statement| The third president of the United States was Thomas Jefferson.
+statement| Bali tigers are extinct.
+statement| Sir Ian McKellan played Gandalf in the Lord of the Rings and the Hobbit franchises.
+statement| King John of England signed the Magna Carta in 1215.
+statement| The United States was established in 1776.
+statement| The pH levels in acids are lower than pH levels in alkalines.
+statement| Beethoven had a reputation as a virtuoso pianist.
