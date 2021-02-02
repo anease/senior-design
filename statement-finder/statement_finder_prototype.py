@@ -34,6 +34,8 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import precision_recall_fscore_support as score
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
+nltk.download('wordnet')
+
 #Process input_text from webpage parser
 input_text = pd.DataFrame(nltk.sent_tokenize(sampleText))
 input_text.columns = ['body_text']
