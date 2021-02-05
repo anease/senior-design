@@ -20,5 +20,7 @@ This tool takes text from a given web page, parses it, and returns a list of sta
     - This tool is used to test different learning models for the statement finder tool.
 - research-and-decisions.md
     - Markdown file containing the research notes relevant to the tool as well as a list of decisions that were made about vasious aspects of the tool.
+- sf-design.md
+    - Markdown file containing the design documentation for the statement finder program.
 - statement_finder_prototype.py
     - This tool finds and determines the statements from text on a webpage.
