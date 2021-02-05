@@ -34,7 +34,11 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import precision_recall_fscore_support as score
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
+# Dependencies: nltk, pandas, sklearn
+
 nltk.download('wordnet')
+nltk.download('punkt')
+nltk.download('stopwords')
 
 #Process input_text from webpage parser
 input_text = pd.DataFrame(nltk.sent_tokenize(sampleText))
