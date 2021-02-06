@@ -37,4 +37,8 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
           console.log(data); 
         });
 
+
+        chrome.tabs.create({url: chrome.extension.getURL("result-page.html")})
+
+
 });

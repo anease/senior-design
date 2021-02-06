@@ -24,6 +24,8 @@ Our team is developing a browser extension that will allow users to quickly iden
   
   - Email: huyg@ucmail.uc.edu
 
+## User Documentation
+- [Documentation Hub](documentation/README.md)
 
 ## Table of Contents
 - [Timeline / Milestones](timeline.md)

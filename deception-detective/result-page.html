@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <title>Deception Detective</title>
+    <style>
+
+      html, body {
+        text-align: center;
+        /* background-color: rgb(211, 211, 211, 0.8); */
+        height: 96.2%;
+      }
+
+      h2, p {
+        margin: 0;
+      }
+
+      .header img {
+        display:flex;
+        float: left;
+        width: 40px;
+        padding: 0.25em;
+      }
+
+      .header h2 {
+        display:flex;
+        position: relative;
+        font-family: Courier, monospace;
+      }
+
+      .header {
+          width: 150px;
+      }
+      
+      .resultDiv {
+        padding-top: 10px;
+      }
+
+      .resultDiv h1 {
+        font-family: Courier, monospace;
+      }
+
+      .fieldBlock {
+        /* background-color: rgb(200, 200, 200); */
+        width: 30rem;
+        padding: 10px;
+        }
+
+      .statementLabel {
+        font-weight: bold;
+        font-family: Courier, monospace;
+        padding-bottom: .2rem;
+      }
+
+      .statement {
+        /* overflow: scroll; */
+        font-family: Courier, monospace;
+        font-size: initial;
+      }
+
+      .rating {
+        font-family: Courier, monospace;
+        font-size: initial;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="header">
+        <img src='./assests/icon128.png' id='icon'>
+        <h2>Deception Detective<h2>
+    </div>
+
+    <div class="resultDiv">
+        <h1> Fact Check Rating </h1>
+   
+
+        <div style="display: inline-flex;">
+            <div class="fieldBlock">
+                <div class="statementLabel">Statement</div>
+                <!-- TODO: Dynamic statement from backend -->
+                <div class="statement">the Earth is in the form of a disk with the North Pole in the center and Antarctica as a wall surrounding the known continents</div>
+            </div>
+            
+            <div class="fieldBlock">
+                <div class="statementLabel">Rating</div>
+                <!-- TODO: Dynamic rating from backend -->
+                <!-- Add rating condition to change color red/green/yellow for each rating value -->
+                <div class="rating" style="color: red;">FALSE</div>
+            </div>
+            
+        </div>
+
+
+    </div>
+    <!-- link to non-persistent background script -->
+    <script src="popup.js"></script>
+
+  </body>
+
+</html>
