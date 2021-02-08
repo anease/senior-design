@@ -47,6 +47,9 @@ Basic parts of a sentence: subject, verb (or predicate), and (often, but not alw
 - Subject: Ususally a noun that names a person, place or thing.
 - Verb or predicate: Ususally follows the subject and identifies an action or state of being.
 - Object: Ususally follows the verb and is the recipient of the action
+- Co-reference resolution: finding all expressions that refer to the same entity in a text
+    - neuralcoref python library contains methods for coreference resolution
+
 
 Potential approach: 
 - Look through (tokenized but unfiltered) sentences for pronouns.
