@@ -65,8 +65,13 @@ Potential approach:
 #### Atomic Statement Finder
 Types of facts:
 - [subject] is [object]
+- [subject] has [object/property]
 - [subject] does [action]
     - [subject] causes [action]
+
+Note: Consideration may be needed for qualifiers
+- Example: Cars do not move when they have no gas. [when they have no gas] adds important context to the statement [Cars do not move].
+- Failing to address quantifiers may increase the difficulty of fact-checking.
 
 ## Decisions
 - For the purposes of this tool, opinions will be classified as non-statements.
