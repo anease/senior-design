@@ -36,17 +36,24 @@ Since the text used may contain pronouns, we will need a way to find and replace
 Dependency grammar: The grammatical theory that words are connected by directed links.
 Dependency parsing: The process of analyzing the grammatical structure of a sentence based on the dependencies between words in a sentence.
 - https://realpython.com/natural-language-processing-spacy-python/#dependency-parsing-using-spacy [link to python tool for dependency parsing]
+
 Antecedent: A word for which a pronoun stands. 
 Pronoun: A general word that stands for an antecedent.
 - Examples: Me, you, him/her, it, us, them, I, you, he/she, it, we, they, my/mine, your/yours, his/her/hers, its, ours, their/theirs
+
 Anaphor: A word or phrase that refers to an earlier word or phrase.
 - Example: "John went to sleep when he arrived home."
+
 Cataphor: A word or phrase that refers to a later word or phrase.
 - Example: "When he arrived home, John went to sleep."
+
 Basic parts of a sentence: subject, verb (or predicate), and (often, but not always) the object.
 - Subject: Ususally a noun that names a person, place or thing.
 - Verb or predicate: Ususally follows the subject and identifies an action or state of being.
 - Object: Ususally follows the verb and is the recipient of the action
+- Co-reference resolution: finding all expressions that refer to the same entity in a text
+    - neuralcoref python library contains methods for coreference resolution
+
 
 Potential approach: 
 - Look through (tokenized but unfiltered) sentences for pronouns.
@@ -55,6 +62,16 @@ Potential approach:
 - Replace the pronoun with the same (object/subject) from the previous sentence.
 - (Make the process recursive to account for multiple sentneces with pronouns?)
 
+#### Atomic Statement Finder
+Types of facts:
+- [subject] is [object]
+- [subject] has [object/property]
+- [subject] does [action]
+    - [subject] causes [action]
+
+Note: Consideration may be needed for qualifiers
+- Example: Cars do not move when they have no gas. [when they have no gas] adds important context to the statement [Cars do not move].
+- Failing to address quantifiers may increase the difficulty of fact-checking.
 
 ## Decisions
 - For the purposes of this tool, opinions will be classified as non-statements.
