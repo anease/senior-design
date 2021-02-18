@@ -51,6 +51,14 @@ def clean_text(text): #Method for cleaning text in preparation for vectorizing
     # text = [word for word in tokens] #no lemmatize and no removing stopwords
     return text
 
+def remove_punct(text):
+    text = "".join([word.lower() for word in text if word not in string.punctuation])
+    return text
+
+def tokenize(text):
+    tokens = re.findall('\w+', text)
+    return tokens
+
 def find_statements(in_text):
     #Process input_text from webpage parser
     input_text = pd.DataFrame(nltk.sent_tokenize(in_text))
@@ -91,63 +99,153 @@ def find_statements(in_text):
 
     return returned_statements
 
-# print("Calling function:")
-# print(find_statements(sampleText))
+#---------------------------------------------------------------------------#
+# Atomic Statement Finder
+#---------------------------------------------------------------------------#
+# Input: Text with pronouns replaced
+# Output: List of atomic statements
+# Process: 
+#   -Split into sentences (or perform upon individual sentences in a loop)
+#       -Find POS tags for words
+#       -Determine statement parts from within sentence
+#       -Arrange statement(s)
+#           -If needed, retrieve quantifiers
+#       -Add statement(s) to return array
+#           -If needed, an index of the statements' original sentences could be added here
+#   -Return array of statements
 
+import spacy
+import textacy #pip install required
+# import nltk
+# import pandas as pd
+from spacy import displacy
+
+def atomic_find_statements(text):
+    nlp = spacy.load("en_core_web_sm")
+    statements = []
+    sentences = pd.DataFrame(nltk.sent_tokenize(text))
+    sentences.columns = ['input_sentence']
+    sentences['semi_clean_sentence'] = [remove_punct(text) for text in sentences['input_sentence']]
+    sentences['tokens'] = [tokenize(remove_punct(text)) for text in sentences['input_sentence']]
+    sentences['cleaned_tokens'] = [clean_text(text) for text in sentences['input_sentence']]
+    sentences['cleaned_sentence'] = [" ".join(word) for word in sentences['cleaned_tokens']]
+    print(sentences.head())
+    
+    # #Block for visualizing dependencies for datasets
+    # data = pd.read_csv('dataset-nonstatements.txt', sep='|')
+    # data.columns = ['label', 'body_text']
+    # for sentence in data['body_text']:
+    #     doc = nlp(sentence)
+    #     displacy.serve(doc, style='dep')
+
+
+    for sentence in sentences['semi_clean_sentence']:
+    # for sentence in sentences['cleaned_sentence']:
+        doc = nlp(sentence)
+        aux_words, adj_words, nouns, verbs = [], [], [], []
+        
+        #Store noun chunks
+        for chunk in doc.noun_chunks:
+            nouns.append(chunk.text)
+        #Store auxiliary words and adjectives
+        for word in doc:
+            # print("Word: {}, Word tag: {}, Dependency: {}".format(word, word.tag_, word.dep_))
+            if word.tag_ == "VBP":
+                aux_words.append(word.text)
+            elif word.tag_ == "JJ":
+                adj_words.append(word.text)
+        #Store verb phrases
+        verb_pattern = [{"POS": "VERB", "OP": "*"},{"POS": "ADV", "OP": "*"},{"POS": "VERB", "OP": "+"},{"POS": "PART", "OP": "*"}]
+        sentenceDoc = textacy.make_spacy_doc(sentence, lang='en_core_web_sm')
+        verb_phrases = textacy.extract.matches(sentenceDoc, verb_pattern)
+        for chunk in verb_phrases:
+            verbs.append(chunk.text)
+        
+        #Print things, delete after development complete
+        print("-"*75)
+        print(sentence)
+        print("Noun Chunks: ", len(nouns), "; ", nouns)
+        print("Auxilary words: ", len(aux_words), "; ", aux_words)
+        print("Adjective words: ", len(adj_words), "; ", adj_words)
+        print("Verb Phrases: ", len(verbs), "; ", verbs)
+        print("-"*75)
+
+        # displacy.serve(doc, style='dep')
+
+        if doc[0].tag_ != "VBP":
+            if len(nouns) == 2 and len(aux_words) > 0:
+                if len(verbs) > 0:
+                    statements.append(nouns[0] + " " + aux_words[0] + " " + verbs[0] + " " + nouns[1])
+                else:
+                    statements.append(nouns[0] + " " + aux_words[0] + " " + nouns[1])
+            if len(nouns) == 1 and len(adj_words) > 0 and len(aux_words) > 0:
+                statement = nouns[0] + " " + aux_words[0] + " " + adj_words[0]
+                statements.append(statement)
+    
+    return statements
+
+testSentence = "Granny Smith apples are green. Do you like Granny Smith apples?"
+expectedOutput = ["granny smith apples are green"]
+if atomic_find_statements(testSentence) == expectedOutput:
+    print("Test successful")
+else:
+    print("Test failed")
+
+# print(atomic_find_statements(testSentence))
 
 #---------------------------------------------------------------------------#
 # Testing Block
 #---------------------------------------------------------------------------#
-# Test 1: Test expected normal input
-test1_in = "I like going to the zoo. Cheetahs are my favorite animal there! They can run up to 80 miles per hour! What is your favorite animal? Mr. Smith was our guide last time."
-test1_out = find_statements(test1_in)
-test1_expected_out = ["They can run up to 80 miles per hour!", "Mr. Smith was our guide last time."]
-if test1_out == test1_expected_out:
-    print("Test 1: Pass")
-else:
-    print("Test 1: Fail")
-    print(test1_out)
-    print(test1_expected_out)
-# Test 2: Test opinions
-test2_in = "I like ice cream. My favorite pizza topping is pepperoni!"
-test2_out = find_statements(test2_in)
-test2_expected_out = []
-if test2_out == test2_expected_out:
-    print("Test 2: Pass")
-else:
-    print("Test 2: Fail")
-    print(test2_out)
-    print(test2_expected_out)
-# Test 3: Test questions
-test3_in = "Who are you? Why can cheetahs run so fast? Is Columbus the capital of Ohio?"
-test3_out = find_statements(test3_in)
-test3_expected_out = []
-if test3_out == test3_expected_out:
-    print("Test 3: Pass")
-else:
-    print("Test 3: Fail")
-    print(test3_out)
-    print(test3_expected_out)
-# Test 4: Test commands
-test4_in = "Drive! Shine your shoes. Tell me what time it is."
-test4_out = find_statements(test4_in)
-test4_expected_out = []
-if test4_out == test4_expected_out:
-    print("Test 4: Pass")
-else:
-    print("Test 4: Fail")
-    print(test4_out)
-    print(test4_expected_out)
-# Test 5: Test salutations
-test5_in = "Good morning! See you later. Goodbye."
-test5_out = find_statements(test5_in)
-test5_expected_out = []
-if test5_out == test5_expected_out:
-    print("Test 5: Pass")
-else:
-    print("Test 5: Fail")
-    print(test5_out)
-    print(test5_expected_out)
+# # Test 1: Test expected normal input
+# test1_in = "I like going to the zoo. Cheetahs are my favorite animal there! They can run up to 80 miles per hour! What is your favorite animal? Mr. Smith was our guide last time."
+# test1_out = find_statements(test1_in)
+# test1_expected_out = ["They can run up to 80 miles per hour!", "Mr. Smith was our guide last time."]
+# if test1_out == test1_expected_out:
+#     print("Test 1: Pass")
+# else:
+#     print("Test 1: Fail")
+#     print(test1_out)
+#     print(test1_expected_out)
+# # Test 2: Test opinions
+# test2_in = "I like ice cream. My favorite pizza topping is pepperoni!"
+# test2_out = find_statements(test2_in)
+# test2_expected_out = []
+# if test2_out == test2_expected_out:
+#     print("Test 2: Pass")
+# else:
+#     print("Test 2: Fail")
+#     print(test2_out)
+#     print(test2_expected_out)
+# # Test 3: Test questions
+# test3_in = "Who are you? Why can cheetahs run so fast? Is Columbus the capital of Ohio?"
+# test3_out = find_statements(test3_in)
+# test3_expected_out = []
+# if test3_out == test3_expected_out:
+#     print("Test 3: Pass")
+# else:
+#     print("Test 3: Fail")
+#     print(test3_out)
+#     print(test3_expected_out)
+# # Test 4: Test commands
+# test4_in = "Drive! Shine your shoes. Tell me what time it is."
+# test4_out = find_statements(test4_in)
+# test4_expected_out = []
+# if test4_out == test4_expected_out:
+#     print("Test 4: Pass")
+# else:
+#     print("Test 4: Fail")
+#     print(test4_out)
+#     print(test4_expected_out)
+# # Test 5: Test salutations
+# test5_in = "Good morning! See you later. Goodbye."
+# test5_out = find_statements(test5_in)
+# test5_expected_out = []
+# if test5_out == test5_expected_out:
+#     print("Test 5: Pass")
+# else:
+#     print("Test 5: Fail")
+#     print(test5_out)
+#     print(test5_expected_out)
 
 #---------------------------------------------------------------------------#
 # Model Comparison and Grid Search for finding optimal parameters
