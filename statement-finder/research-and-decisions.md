@@ -64,7 +64,7 @@ Potential approach:
 
 #### Atomic Statement Finder
 Types of facts:
-- [subject] is [object]
+- [subject] is [object/adjective]
 - [subject] has [object/property]
 - [subject] does [action]
     - [subject] causes [action]

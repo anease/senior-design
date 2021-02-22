@@ -126,10 +126,10 @@ def atomic_find_statements(text):
     sentences = pd.DataFrame(nltk.sent_tokenize(text))
     sentences.columns = ['input_sentence']
     sentences['semi_clean_sentence'] = [remove_punct(text) for text in sentences['input_sentence']]
-    sentences['tokens'] = [tokenize(remove_punct(text)) for text in sentences['input_sentence']]
-    sentences['cleaned_tokens'] = [clean_text(text) for text in sentences['input_sentence']]
-    sentences['cleaned_sentence'] = [" ".join(word) for word in sentences['cleaned_tokens']]
-    print(sentences.head())
+    # sentences['tokens'] = [tokenize(remove_punct(text)) for text in sentences['input_sentence']]
+    # sentences['cleaned_tokens'] = [clean_text(text) for text in sentences['input_sentence']]
+    # sentences['cleaned_sentence'] = [" ".join(word) for word in sentences['cleaned_tokens']]
+    # print(sentences.head())
     
     # #Block for visualizing dependencies for datasets
     # data = pd.read_csv('dataset-nonstatements.txt', sep='|')
@@ -140,7 +140,6 @@ def atomic_find_statements(text):
 
 
     for sentence in sentences['semi_clean_sentence']:
-    # for sentence in sentences['cleaned_sentence']:
         doc = nlp(sentence)
         aux_words, adj_words, nouns, verbs = [], [], [], []
         
@@ -161,14 +160,14 @@ def atomic_find_statements(text):
         for chunk in verb_phrases:
             verbs.append(chunk.text)
         
-        #Print things, delete after development complete
-        print("-"*75)
-        print(sentence)
-        print("Noun Chunks: ", len(nouns), "; ", nouns)
-        print("Auxilary words: ", len(aux_words), "; ", aux_words)
-        print("Adjective words: ", len(adj_words), "; ", adj_words)
-        print("Verb Phrases: ", len(verbs), "; ", verbs)
-        print("-"*75)
+        # #Print things, delete after development complete
+        # print("-"*75)
+        # print(sentence)
+        # print("Noun Chunks: ", len(nouns), "; ", nouns)
+        # print("Auxilary words: ", len(aux_words), "; ", aux_words)
+        # print("Adjective words: ", len(adj_words), "; ", adj_words)
+        # print("Verb Phrases: ", len(verbs), "; ", verbs)
+        # print("-"*75)
 
         # displacy.serve(doc, style='dep')
 
@@ -182,16 +181,65 @@ def atomic_find_statements(text):
                 statement = nouns[0] + " " + aux_words[0] + " " + adj_words[0]
                 statements.append(statement)
     
+    # print("#"*100)
     return statements
 
-testSentence = "Granny Smith apples are green. Do you like Granny Smith apples?"
-expectedOutput = ["granny smith apples are green"]
-if atomic_find_statements(testSentence) == expectedOutput:
-    print("Test successful")
-else:
-    print("Test failed")
+# # Block for testing tool on dataset sentences
+# data = pd.read_csv('dataset-nonstatements.txt', sep='|')
+# data.columns = ['label', 'body_text']
+# for sentence in data['body_text'][0:10]:
+#     print("Original sentence: {}".format(sentence))
+#     print("Statements: {}".format(atomic_find_statements(sentence)))
+#     print("#"*100)
 
-# print(atomic_find_statements(testSentence))
+# Testing Block for Atomic Statement Finder
+# #Test Template
+# test = ""
+# output = []
+# if atomic_find_statements(test) == output:
+#     print("Test successful")
+# else:
+#     print("Test failed")
+
+# Test 1: [noun] is [adjective]
+test1 = "Granny Smith apples are green. Do you like Granny Smith apples?"
+output1 = ["granny smith apples are green"]
+if atomic_find_statements(test1) == output1:
+    print("Test 1 successful")
+else:
+    print("Test 1 failed")
+
+# Test 2: Questions, commands, and exclamations
+test2 = "Good morning! Who might you be? Sit up straight!"
+output2 = []
+if atomic_find_statements(test2) == output2:
+    print("Test 2 successful")
+else:
+    print("Test 2 failed")
+
+# Test 3: [noun] has [object]
+test3 = "Timmy owns 3 different cars. His Honda Civic has good gas mileage."
+output3 = ["timmy owns 3 different cars", "timmy honda civic has good gas milage"]
+if atomic_find_statements(test3) == output3:
+    print("Test 3 successful")
+else:
+    print("Test 3 failed")
+
+# Test 4: [subject] does [action] | [subject] causes [action]
+test4 = "Cheetahs run very fast. They run fast because of evolution."
+output4 = ["cheetahs run very fast", "Cheetahs run fast because of evolution"]
+if atomic_find_statements(test4) == output4:
+    print("Test 4 successful")
+else:
+    print("Test 4 failed")
+
+# Test 5: Opinions
+test5 = "I like pizza. Pepperoni is my favorite pizza topping."
+output5 = []
+if atomic_find_statements(test5) == output5:
+    print("Test 5 successful")
+else:
+    print("Test 5 failed")
 
 #---------------------------------------------------------------------------#
 # Testing Block
