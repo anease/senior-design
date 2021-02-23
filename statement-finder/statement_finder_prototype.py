@@ -51,6 +51,14 @@ def clean_text(text): #Method for cleaning text in preparation for vectorizing
     # text = [word for word in tokens] #no lemmatize and no removing stopwords
     return text
 
+def remove_punct(text):
+    text = "".join([word.lower() for word in text if word not in string.punctuation])
+    return text
+
+def tokenize(text):
+    tokens = re.findall('\w+', text)
+    return tokens
+
 def find_statements(in_text):
     #Process input_text from webpage parser
     input_text = pd.DataFrame(nltk.sent_tokenize(in_text))
@@ -91,147 +99,199 @@ def find_statements(in_text):
 
     return returned_statements
 
-# print("Calling function:")
-# print(find_statements(sampleText))
+#---------------------------------------------------------------------------#
+# Atomic Statement Finder
+#---------------------------------------------------------------------------#
+# Input: Text with pronouns replaced
+# Output: List of atomic statements
+# Process: 
+#   -Split into sentences (or perform upon individual sentences in a loop)
+#       -Find POS tags for words
+#       -Determine statement parts from within sentence
+#       -Arrange statement(s)
+#           -If needed, retrieve quantifiers
+#       -Add statement(s) to return array
+#           -If needed, an index of the statements' original sentences could be added here
+#   -Return array of statements
 
+import spacy
+import textacy #pip install required
+# import nltk
+# import pandas as pd
+from spacy import displacy
+
+def atomic_find_statements(text):
+    nlp = spacy.load("en_core_web_sm")
+    statements = []
+    sentences = pd.DataFrame(nltk.sent_tokenize(text))
+    sentences.columns = ['input_sentence']
+    sentences['semi_clean_sentence'] = [remove_punct(text) for text in sentences['input_sentence']]
+    # sentences['tokens'] = [tokenize(remove_punct(text)) for text in sentences['input_sentence']]
+    # sentences['cleaned_tokens'] = [clean_text(text) for text in sentences['input_sentence']]
+    # sentences['cleaned_sentence'] = [" ".join(word) for word in sentences['cleaned_tokens']]
+    # print(sentences.head())
+    
+    # #Block for visualizing dependencies for datasets
+    # data = pd.read_csv('dataset-nonstatements.txt', sep='|')
+    # data.columns = ['label', 'body_text']
+    # for sentence in data['body_text']:
+    #     doc = nlp(sentence)
+    #     displacy.serve(doc, style='dep')
+
+
+    for sentence in sentences['semi_clean_sentence']:
+        doc = nlp(sentence)
+        aux_words, adj_words, nouns, verbs = [], [], [], []
+        
+        #Store noun chunks
+        for chunk in doc.noun_chunks:
+            nouns.append(chunk.text)
+        #Store auxiliary words and adjectives
+        for word in doc:
+            # print("Word: {}, Word tag: {}, Dependency: {}".format(word, word.tag_, word.dep_))
+            if word.tag_ == "VBP":
+                aux_words.append(word.text)
+            elif word.tag_ == "JJ":
+                adj_words.append(word.text)
+        #Store verb phrases
+        verb_pattern = [{"POS": "VERB", "OP": "*"},{"POS": "ADV", "OP": "*"},{"POS": "VERB", "OP": "+"},{"POS": "PART", "OP": "*"}]
+        sentenceDoc = textacy.make_spacy_doc(sentence, lang='en_core_web_sm')
+        verb_phrases = textacy.extract.matches(sentenceDoc, verb_pattern)
+        for chunk in verb_phrases:
+            verbs.append(chunk.text)
+        
+        # #Print things, delete after development complete
+        # print("-"*75)
+        # print(sentence)
+        # print("Noun Chunks: ", len(nouns), "; ", nouns)
+        # print("Auxilary words: ", len(aux_words), "; ", aux_words)
+        # print("Adjective words: ", len(adj_words), "; ", adj_words)
+        # print("Verb Phrases: ", len(verbs), "; ", verbs)
+        # print("-"*75)
+
+        # displacy.serve(doc, style='dep')
+
+        if doc[0].tag_ != "VBP":
+            if len(nouns) == 2 and len(aux_words) > 0:
+                if len(verbs) > 0:
+                    statements.append(nouns[0] + " " + aux_words[0] + " " + verbs[0] + " " + nouns[1])
+                else:
+                    statements.append(nouns[0] + " " + aux_words[0] + " " + nouns[1])
+            if len(nouns) == 1 and len(adj_words) > 0 and len(aux_words) > 0:
+                statement = nouns[0] + " " + aux_words[0] + " " + adj_words[0]
+                statements.append(statement)
+    
+    # print("#"*100)
+    return statements
+
+# # Block for testing tool on dataset sentences
+# data = pd.read_csv('dataset-nonstatements.txt', sep='|')
+# data.columns = ['label', 'body_text']
+# for sentence in data['body_text'][0:10]:
+#     print("Original sentence: {}".format(sentence))
+#     print("Statements: {}".format(atomic_find_statements(sentence)))
+#     print("#"*100)
+
+# Testing Block for Atomic Statement Finder
+# #Test Template
+# test = ""
+# output = []
+# if atomic_find_statements(test) == output:
+#     print("Test successful")
+# else:
+#     print("Test failed")
+
+# Test 1: [noun] is [adjective]
+test1 = "Granny Smith apples are green. Do you like Granny Smith apples?"
+output1 = ["granny smith apples are green"]
+if atomic_find_statements(test1) == output1:
+    print("Test 1 successful")
+else:
+    print("Test 1 failed")
+
+# Test 2: Questions, commands, and exclamations
+test2 = "Good morning! Who might you be? Sit up straight!"
+output2 = []
+if atomic_find_statements(test2) == output2:
+    print("Test 2 successful")
+else:
+    print("Test 2 failed")
+
+# Test 3: [noun] has [object]
+test3 = "Timmy owns 3 different cars. His Honda Civic has good gas mileage."
+output3 = ["timmy owns 3 different cars", "timmy honda civic has good gas milage"]
+if atomic_find_statements(test3) == output3:
+    print("Test 3 successful")
+else:
+    print("Test 3 failed")
+
+# Test 4: [subject] does [action] | [subject] causes [action]
+test4 = "Cheetahs run very fast. They run fast because of evolution."
+output4 = ["cheetahs run very fast", "Cheetahs run fast because of evolution"]
+if atomic_find_statements(test4) == output4:
+    print("Test 4 successful")
+else:
+    print("Test 4 failed")
+
+# Test 5: Opinions
+test5 = "I like pizza. Pepperoni is my favorite pizza topping."
+output5 = []
+if atomic_find_statements(test5) == output5:
+    print("Test 5 successful")
+else:
+    print("Test 5 failed")
 
 #---------------------------------------------------------------------------#
 # Testing Block
 #---------------------------------------------------------------------------#
-# Test 1: Test expected normal input
-test1_in = "I like going to the zoo. Cheetahs are my favorite animal there! They can run up to 80 miles per hour! What is your favorite animal? Mr. Smith was our guide last time."
-test1_out = find_statements(test1_in)
-test1_expected_out = ["They can run up to 80 miles per hour!", "Mr. Smith was our guide last time."]
-if test1_out == test1_expected_out:
-    print("Test 1: Pass")
-else:
-    print("Test 1: Fail")
-    print(test1_out)
-    print(test1_expected_out)
-# Test 2: Test opinions
-test2_in = "I like ice cream. My favorite pizza topping is pepperoni!"
-test2_out = find_statements(test2_in)
-test2_expected_out = []
-if test2_out == test2_expected_out:
-    print("Test 2: Pass")
-else:
-    print("Test 2: Fail")
-    print(test2_out)
-    print(test2_expected_out)
-# Test 3: Test questions
-test3_in = "Who are you? Why can cheetahs run so fast? Is Columbus the capital of Ohio?"
-test3_out = find_statements(test3_in)
-test3_expected_out = []
-if test3_out == test3_expected_out:
-    print("Test 3: Pass")
-else:
-    print("Test 3: Fail")
-    print(test3_out)
-    print(test3_expected_out)
-# Test 4: Test commands
-test4_in = "Drive! Shine your shoes. Tell me what time it is."
-test4_out = find_statements(test4_in)
-test4_expected_out = []
-if test4_out == test4_expected_out:
-    print("Test 4: Pass")
-else:
-    print("Test 4: Fail")
-    print(test4_out)
-    print(test4_expected_out)
-# Test 5: Test salutations
-test5_in = "Good morning! See you later. Goodbye."
-test5_out = find_statements(test5_in)
-test5_expected_out = []
-if test5_out == test5_expected_out:
-    print("Test 5: Pass")
-else:
-    print("Test 5: Fail")
-    print(test5_out)
-    print(test5_expected_out)
-
-#---------------------------------------------------------------------------#
-# Model Comparison and Grid Search for finding optimal parameters
-#---------------------------------------------------------------------------#
-
-# import nltk
-# import pandas as pd
-# import re
-# from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-# import string
-# from sklearn.ensemble import RandomForestClassifier
-# from sklearn.model_selection import GridSearchCV
-
-# stopwords = nltk.corpus.stopwords.words('english')
-# ps = nltk.PorterStemmer()
-
-# # data = pd.read_csv("SMSSpamCollection.tsv", sep='\t')
-# data = pd.read_csv('dataset-binary.txt', sep='|')
-# data.columns = ['label', 'body_text']
-
-# def count_punct(text):
-#     count = sum([1 for char in text if char in string.punctuation])
-#     return round(count/(len(text) - text.count(" ")), 3)*100
-
-# data['body_len'] = data['body_text'].apply(lambda x: len(x) - x.count(" "))
-# data['punct%'] = data['body_text'].apply(lambda x: count_punct(x))
-
-# def clean_text(text):
-#     text = "".join([word.lower() for word in text if word not in string.punctuation])
-#     tokens = re.split('\W+', text)
-#     text = [ps.stem(word) for word in tokens if word not in stopwords]
-#     return text
-
-# # TF-IDF
-# tfidf_vect = TfidfVectorizer(analyzer=clean_text)
-# X_tfidf = tfidf_vect.fit_transform(data['body_text'])
-# X_tfidf_feat = pd.concat([data['body_len'], data['punct%'], pd.DataFrame(X_tfidf.toarray())], axis=1)
-
-# # CountVectorizer
-# count_vect = CountVectorizer(analyzer=clean_text)
-# X_count = count_vect.fit_transform(data['body_text'])
-# X_count_feat = pd.concat([data['body_len'], data['punct%'], pd.DataFrame(X_count.toarray())], axis=1)
-
-# X_count_feat.head()
-
-# #Tfidf grid search
-# rf = RandomForestClassifier()
-# param = {'n_estimators': [10, 150, 300], 'max_depth': [30, 60, 90, None]}
-
-# gs = GridSearchCV(rf, param, cv=5, n_jobs=-1)
-# gs_fit = gs.fit(X_tfidf_feat, data['label'])
-# print(pd.DataFrame(gs_fit.cv_results_).sort_values('mean_test_score', ascending=False)[0:5])
-
-# #Count grid search
-# rf = RandomForestClassifier()
-# param = {'n_estimators': [10, 150, 300], 'max_depth': [30, 60, 90, None]}
-
-# gs = GridSearchCV(rf, param, cv=5, n_jobs=-1)
-# gs_fit = gs.fit(X_count_feat, data['label'])
-# print(pd.DataFrame(gs_fit.cv_results_).sort_values('mean_test_score', ascending=False)[0:5])
-
-
-
-
-
-
-
-
-# #Random Forest Classifier
-# #Seems to have slightly higher accuracy than GBClassifier
-# print("RandomForestClassifier:")
-# rf = RandomForestClassifier(n_estimators=450, max_depth=25, n_jobs=-1)
-# rf_model = rf.fit(x_train, y_train)
-# #Predict for the test set
-# y_pred = rf_model.predict(x_test)
-# precision, recall, fscore, support = score(y_test, y_pred, pos_label='statement', average='binary')
-
-# #Gradient Boosting Classifier
-# print("GradientBoostingClassifier:")
-# gb = GradientBoostingClassifier(n_estimators=50, max_depth=25, learning_rate=0.1)
-# gb_model = gb.fit(x_train, y_train)
-# y_pred = gb_model.predict(x_test)
-# precision, recall, fscore, support = score(y_test, y_pred, pos_label='statement', average='binary')
-
-# print('Precision: {} / Recall: {} / Accuracy: {}'.format(round(precision, 3), round(recall, 3), round((y_pred==y_test).sum() / len(y_pred), 3)))
-
+# # Test 1: Test expected normal input
+# test1_in = "I like going to the zoo. Cheetahs are my favorite animal there! They can run up to 80 miles per hour! What is your favorite animal? Mr. Smith was our guide last time."
+# test1_out = find_statements(test1_in)
+# test1_expected_out = ["They can run up to 80 miles per hour!", "Mr. Smith was our guide last time."]
+# if test1_out == test1_expected_out:
+#     print("Test 1: Pass")
+# else:
+#     print("Test 1: Fail")
+#     print(test1_out)
+#     print(test1_expected_out)
+# # Test 2: Test opinions
+# test2_in = "I like ice cream. My favorite pizza topping is pepperoni!"
+# test2_out = find_statements(test2_in)
+# test2_expected_out = []
+# if test2_out == test2_expected_out:
+#     print("Test 2: Pass")
+# else:
+#     print("Test 2: Fail")
+#     print(test2_out)
+#     print(test2_expected_out)
+# # Test 3: Test questions
+# test3_in = "Who are you? Why can cheetahs run so fast? Is Columbus the capital of Ohio?"
+# test3_out = find_statements(test3_in)
+# test3_expected_out = []
+# if test3_out == test3_expected_out:
+#     print("Test 3: Pass")
+# else:
+#     print("Test 3: Fail")
+#     print(test3_out)
+#     print(test3_expected_out)
+# # Test 4: Test commands
+# test4_in = "Drive! Shine your shoes. Tell me what time it is."
+# test4_out = find_statements(test4_in)
+# test4_expected_out = []
+# if test4_out == test4_expected_out:
+#     print("Test 4: Pass")
+# else:
+#     print("Test 4: Fail")
+#     print(test4_out)
+#     print(test4_expected_out)
+# # Test 5: Test salutations
+# test5_in = "Good morning! See you later. Goodbye."
+# test5_out = find_statements(test5_in)
+# test5_expected_out = []
+# if test5_out == test5_expected_out:
+#     print("Test 5: Pass")
+# else:
+#     print("Test 5: Fail")
+#     print(test5_out)
+#     print(test5_expected_out)
 
