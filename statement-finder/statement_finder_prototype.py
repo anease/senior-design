@@ -100,6 +100,20 @@ def find_statements(in_text):
     return returned_statements
 
 #---------------------------------------------------------------------------#
+# Pronoun Replacement Tool
+#---------------------------------------------------------------------------#
+
+import spacy
+import neuralcoref
+
+nlp = spacy.load('en_core_web_sm')
+neuralcoref.add_to_pipe(nlp, greedyness=0.48)
+
+def replace_pronouns(text):
+    doc = nlp(text)
+    return doc._.coref_resolved
+
+#---------------------------------------------------------------------------#
 # Atomic Statement Finder
 #---------------------------------------------------------------------------#
 # Input: Text with pronouns replaced
@@ -114,7 +128,7 @@ def find_statements(in_text):
 #           -If needed, an index of the statements' original sentences could be added here
 #   -Return array of statements
 
-import spacy
+# import spacy #import added above for pronoun replacement
 import textacy #pip install required
 # import nltk
 # import pandas as pd
@@ -123,9 +137,13 @@ from spacy import displacy
 def atomic_find_statements(text):
     nlp = spacy.load("en_core_web_sm")
     statements = []
+    resolved_text = replace_pronouns(text)
     sentences = pd.DataFrame(nltk.sent_tokenize(text))
     sentences.columns = ['input_sentence']
     sentences['semi_clean_sentence'] = [remove_punct(text) for text in sentences['input_sentence']]
+    sentences['resolved_sentence'] = pd.DataFrame(nltk.sent_tokenize(resolved_text))
+    sentences['clean_resolved_sentence'] = [remove_punct(text) for text in sentences['resolved_sentence']]
+    
     # sentences['tokens'] = [tokenize(remove_punct(text)) for text in sentences['input_sentence']]
     # sentences['cleaned_tokens'] = [clean_text(text) for text in sentences['input_sentence']]
     # sentences['cleaned_sentence'] = [" ".join(word) for word in sentences['cleaned_tokens']]
@@ -139,28 +157,31 @@ def atomic_find_statements(text):
     #     displacy.serve(doc, style='dep')
 
 
-    for sentence in sentences['semi_clean_sentence']:
+    for sentence in sentences['clean_resolved_sentence']:
+    # for sentence in sentences['semi_clean_sentence']:
         doc = nlp(sentence)
         aux_words, adj_words, nouns, verbs = [], [], [], []
-        
+
         #Store noun chunks
         for chunk in doc.noun_chunks:
             nouns.append(chunk.text)
-        #Store auxiliary words and adjectives
-        for word in doc:
-            # print("Word: {}, Word tag: {}, Dependency: {}".format(word, word.tag_, word.dep_))
-            if word.tag_ == "VBP":
-                aux_words.append(word.text)
-            elif word.tag_ == "JJ":
-                adj_words.append(word.text)
         #Store verb phrases
         verb_pattern = [{"POS": "VERB", "OP": "*"},{"POS": "ADV", "OP": "*"},{"POS": "VERB", "OP": "+"},{"POS": "PART", "OP": "*"}]
         sentenceDoc = textacy.make_spacy_doc(sentence, lang='en_core_web_sm')
         verb_phrases = textacy.extract.matches(sentenceDoc, verb_pattern)
         for chunk in verb_phrases:
             verbs.append(chunk.text)
+        #Store auxiliary words and adjectives
+        for word in doc:
+            print("Word: {}, Word tag: {}, Dependency: {}".format(word, word.tag_, word.dep_))
+            if word.tag_ == "VBP":
+                aux_words.append(word.text)
+            elif word.tag_ == "JJ" or word.tag_ == "RB":
+                adj_words.append(word.text)
+            elif (word.tag_ == "VBZ" or word.tag_ == "VBP") and len(verbs) == 0:
+                verbs.append(word.text)
         
-        # #Print things, delete after development complete
+        #Print things, delete after development complete
         # print("-"*75)
         # print(sentence)
         # print("Noun Chunks: ", len(nouns), "; ", nouns)
@@ -171,17 +192,20 @@ def atomic_find_statements(text):
 
         # displacy.serve(doc, style='dep')
 
-        if doc[0].tag_ != "VBP":
-            if len(nouns) == 2 and len(aux_words) > 0:
-                if len(verbs) > 0:
-                    statements.append(nouns[0] + " " + aux_words[0] + " " + verbs[0] + " " + nouns[1])
-                else:
-                    statements.append(nouns[0] + " " + aux_words[0] + " " + nouns[1])
+        if doc[0].dep_ != "ROOT" and doc[-1].dep_ != "ROOT":
+            if len(nouns) == 2 and len(verbs) > 0:
+                # if len(verbs) > 0:
+                    # statements.append(nouns[0] + " " + aux_words[0] + " " + verbs[0] + " " + nouns[1])
+                statements.append(nouns[0] + " " + verbs[0] + " " + nouns[1])
+                # else:
+                #     statements.append(nouns[0] + " " + aux_words[0] + " " + nouns[1])
             if len(nouns) == 1 and len(adj_words) > 0 and len(aux_words) > 0:
                 statement = nouns[0] + " " + aux_words[0] + " " + adj_words[0]
                 statements.append(statement)
     
     # print("#"*100)
+    
+    print(statements)
     return statements
 
 # # Block for testing tool on dataset sentences
@@ -192,38 +216,36 @@ def atomic_find_statements(text):
 #     print("Statements: {}".format(atomic_find_statements(sentence)))
 #     print("#"*100)
 
+# print(spacy.explain("MD"))
+print(spacy.explain("RB"))
+
+#---------------------------------------------------------------------------#
 # Testing Block for Atomic Statement Finder
-# #Test Template
-# test = ""
-# output = []
-# if atomic_find_statements(test) == output:
-#     print("Test successful")
+#---------------------------------------------------------------------------#
+
+# # Test 1: [noun] is [adjective]
+# test1 = "Granny Smith apples are green. Do you like Granny Smith apples?"
+# output1 = ["granny smith apples are green"]
+# if atomic_find_statements(test1) == output1:
+#     print("Test 1 successful")
 # else:
-#     print("Test failed")
+#     print("Test 1 failed")
 
-# Test 1: [noun] is [adjective]
-test1 = "Granny Smith apples are green. Do you like Granny Smith apples?"
-output1 = ["granny smith apples are green"]
-if atomic_find_statements(test1) == output1:
-    print("Test 1 successful")
-else:
-    print("Test 1 failed")
+# # Test 2: Questions, commands, and exclamations
+# test2 = "Good morning! Who might you be? Sit up straight!"
+# output2 = []
+# if atomic_find_statements(test2) == output2:
+#     print("Test 2 successful")
+# else:
+#     print("Test 2 failed")
 
-# Test 2: Questions, commands, and exclamations
-test2 = "Good morning! Who might you be? Sit up straight!"
-output2 = []
-if atomic_find_statements(test2) == output2:
-    print("Test 2 successful")
-else:
-    print("Test 2 failed")
-
-# Test 3: [noun] has [object]
-test3 = "Timmy owns 3 different cars. His Honda Civic has good gas mileage."
-output3 = ["timmy owns 3 different cars", "timmy honda civic has good gas milage"]
-if atomic_find_statements(test3) == output3:
-    print("Test 3 successful")
-else:
-    print("Test 3 failed")
+# # Test 3: [noun] has [object]
+# test3 = "Timmy owns 3 different cars. His Honda Civic has good gas mileage."
+# output3 = ["timmy owns 3 different cars", "timmy honda civic has good gas mileage"]
+# if atomic_find_statements(test3) == output3:
+#     print("Test 3 successful")
+# else:
+#     print("Test 3 failed")
 
 # Test 4: [subject] does [action] | [subject] causes [action]
 test4 = "Cheetahs run very fast. They run fast because of evolution."
@@ -233,13 +255,13 @@ if atomic_find_statements(test4) == output4:
 else:
     print("Test 4 failed")
 
-# Test 5: Opinions
-test5 = "I like pizza. Pepperoni is my favorite pizza topping."
-output5 = []
-if atomic_find_statements(test5) == output5:
-    print("Test 5 successful")
-else:
-    print("Test 5 failed")
+# # Test 5: Opinions
+# test5 = "I like pizza. Pepperoni is my favorite pizza topping."
+# output5 = []
+# if atomic_find_statements(test5) == output5:
+#     print("Test 5 successful")
+# else:
+#     print("Test 5 failed")
 
 #---------------------------------------------------------------------------#
 # Testing Block

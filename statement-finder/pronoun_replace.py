@@ -21,7 +21,7 @@ import spacy
 import neuralcoref
 
 nlp = spacy.load('en_core_web_sm')
-neuralcoref.add_to_pipe(nlp, greedyness=0.5)
+neuralcoref.add_to_pipe(nlp, greedyness=0.48)
 
 def replace_pronouns(text):
     doc = nlp(text)

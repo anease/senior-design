@@ -62,6 +62,12 @@ Potential approach:
 - Replace the pronoun with the same (object/subject) from the previous sentence.
 - (Make the process recursive to account for multiple sentneces with pronouns?)
 
+Ultimate Approach: neuralcoref python library
+- Building our own pronoun replacement tool would quickly eclipse the scope of the project.
+- This approach is far from perfect, but provides some basic benefit.
+- Decision: greedyness value of .48 seems to provide the best balance of effectiveness and errors.
+    - That being said, neuralcoref is not omnipotent and can struggle with ambiguous pronouns. Additionally, some of the pronoun replacements make the sentences grammatically incorrect.
+
 #### Atomic Statement Finder
 Types of facts:
 - [subject] is [object/adjective]
