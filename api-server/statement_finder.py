@@ -9,7 +9,13 @@ import pandas as pd #Not necessary for final version
 # Pronoun Replacement Tool
 #---------------------------------------------------------------------------#
 
-nlp = spacy.load('en_core_web_sm')
+#Daniel's Code
+#nlp = spacy.load('en_core_web_sm')
+
+#Changed import structure to work on Andrew's machine
+import en_core_web_sm
+nlp = en_core_web_sm.load()
+
 neuralcoref.add_to_pipe(nlp, greedyness=0.48)
 
 #input: a body of text potentially spanning multiple sentences

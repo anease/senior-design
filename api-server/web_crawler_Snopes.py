@@ -51,7 +51,12 @@ class Search_n_Scraper:
 
     ####### RETRIEVES DYNAMIC HTML CONTENT #######
     def getPage(self, url):
-        browser = webdriver.Chrome()
+        #Lando's code
+        #browser = webdriver.Chrome()
+
+        #Changed to work on Andrew's machine
+        browser = webdriver.Chrome(executable_path='./chromedriver')
+
         try:
             browser.get(url)
         except requests.exceptions.RequestException:
