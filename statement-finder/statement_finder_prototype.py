@@ -2,8 +2,13 @@
 ## Description: This tool takes text as input, replcaes pronouns with their antecedents, and returns statements that meet dependency relationship criteria.
 
 
-import nltk, string, spacy, neuralcoref, re
+import nltk, string, spacy, neuralcoref, re, nltk
 import pandas as pd #Not necessary for final version
+
+# nltk.download('wordnet') #consider leaving in uncommented to avoid issues
+
+stopwords = nltk.corpus.stopwords.words('english')
+wn = nltk.WordNetLemmatizer()
 
 #---------------------------------------------------------------------------#
 # Pronoun Replacement Tool
@@ -26,6 +31,14 @@ def replace_pronouns(text):
 #output: sentence with punctuation removed and all letters converted to lowercase
 def remove_punct(text):
     text = "".join([word.lower() for word in text if word not in string.punctuation])
+    return text
+
+#input: uncleaned sentence
+#output: cleaned sentence with punctuation removed, capital letters coverted to lowercase, stopwords removed, and all words lemmatized
+def clean_text(text):
+    text = "".join([word.lower() for word in text if word not in string.punctuation])
+    tokens = re.findall('\w+', text)
+    text = " ".join([wn.lemmatize(word) for word in tokens if word not in stopwords])
     return text
 
 #input: uncleaned sentence
@@ -129,16 +142,20 @@ def atomic_find_statements(text):
 
         #Return statements if they meet the structure of a statement
         if chunks[0].dep_ != "aux" and chunks[0].dep_ != "advmod":
-            if "like" not in statement and "favorite" not in statement: #poor attempt at removing opinions, will also remove statements that contain those words
-                if len(list(filter(r1.match, [tags]))) > 0:
-                    statements.append(statement)
-                elif len(list(filter(r2.match, [tags]))) > 0:
-                    statements.append(statement)
-                elif len(list(filter(r3.match, [tags]))) > 0:
-                    statements.append(statement)
-                elif len(list(filter(r4.match, [tags]))) > 0:
-                    statements.append(statement)
-    return statements
+            if len(list(filter(r1.match, [tags]))) > 0:
+                statements.append(statement)
+            elif len(list(filter(r2.match, [tags]))) > 0:
+                statements.append(statement)
+            elif len(list(filter(r3.match, [tags]))) > 0:
+                statements.append(statement)
+            elif len(list(filter(r4.match, [tags]))) > 0:
+                statements.append(statement)
+    cleaned_statements = []
+    for statement in statements:
+        cleaned_statements.append(clean_text(statement))
+    # print("Cleaned Statements: {}".format(cleaned_statements))
+    # return statements
+    return cleaned_statements
 
 #---------------------------------------------------------------------------#
 # Testing Block for Atomic Statement Finder
@@ -150,45 +167,56 @@ def run_tests():
     # Test 1: [noun] is [adjective]
     test1 = "Granny Smith apples are green. Do you like Granny Smith apples?"
     output1 = ["granny smith apples are green"]
-    if atomic_find_statements(test1) == output1:
-        print("Test 1 successful")
-    else:
-        print("Test 1 failed")
+    print(test1)
+    print(atomic_find_statements(test1))
+    # if atomic_find_statements(test1) == output1:
+    #     print("Test 1 successful")
+    # else:
+    #     print("Test 1 failed")
 
     # Test 2: Questions, commands, and exclamations
     test2 = "Good morning! Who might you be? Sit up straight!"
     output2 = []
-    if atomic_find_statements(test2) == output2:
-        print("Test 2 successful")
-    else:
-        print("Test 2 failed")
+    print(test2)
+    print(atomic_find_statements(test2))
+    # if atomic_find_statements(test2) == output2:
+    #     print("Test 2 successful")
+    # else:
+    #     print("Test 2 failed")
 
     # Test 3: [noun] has [object]
     test3 = "Timmy owns 3 different cars. His Honda Civic has good gas mileage."
     output3 = ["timmy owns 3 different cars", "timmy honda civic has good gas mileage"]
-    if atomic_find_statements(test3) == output3:
-        print("Test 3 successful")
-    else:
-        print("Test 3 failed")
+    print(test3)
+    print(atomic_find_statements(test3))
+    # if atomic_find_statements(test3) == output3:
+    #     print("Test 3 successful")
+    # else:
+    #     print("Test 3 failed")
 
     # Test 4: [subject] does [action] | [subject] causes [action]
     test4 = "Cheetahs run very fast. They run fast because of evolution."
     output4 = ["cheetahs run very fast", "cheetahs run fast because of evolution"]
-    if atomic_find_statements(test4) == output4:
-        print("Test 4 successful")
-    else:
-        print("Test 4 failed")
+    print(test4)
+    print(atomic_find_statements(test4))
+    # if atomic_find_statements(test4) == output4:
+    #     print("Test 4 successful")
+    # else:
+    #     print("Test 4 failed")
 
+    ### Test 5 is no longer a valid test because opinions are not being filtered out by this tool
     # Test 5: Opinions
     test5 = "I like pizza. Pepperoni is my favorite pizza topping."
     output5 = []
-    if atomic_find_statements(test5) == output5:
-        print("Test 5 successful")
-    else:
-        print("Test 5 failed")
-    return
+    print(test5)
+    print(atomic_find_statements(test5))
+    # if atomic_find_statements(test5) == output5:
+    #     print("Test 5 successful")
+    # else:
+    #     print("Test 5 failed")
+    # return
 
-run_tests()
+run_tests() #tests need to be updated to match new specification of returning clean text
 
 
 
