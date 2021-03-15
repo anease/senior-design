@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from statement_finder import *
 from web_crawler_Snopes import *
@@ -13,10 +13,41 @@ def factCheck():
 
     if request.method == 'POST':
 
-        if request.json['data'] == 'fact':
-            return '\nFACT!\n'
+        foundOnSnopes = False
+       
+
+        statementArray = atomic_find_statements(request.json['data'])
+        print(statementArray)
+
+        # If a full statement cannot be parsed return immediately
+        if len(statementArray) == 0:
+            return jsonify(
+                statementsParsed = 0
+            )
+
         else:
-            return '\nFALSE\n'
+
+            wikiCrawl = Crawler()
+            snopesCrawl = Search_n_Scraper()
+
+            for x in statementArray:
+                # site = wikiCrawl.wiki_search(x)
+                # wikiCrawl.crawl(site)
+                # print(wikiCrawl)
+
+                snopesSites = snopesCrawl.snopes_search(x)
+                print(snopesSites)
+
+
+            if len(snopesSites) > 0:
+                foundOnSnopes = True
+
+            return jsonify(
+                foundOnSnopes = foundOnSnopes,
+                email="emoia",
+                id="asdffgfa"
+            )
+
 
 
 ## statement_finder.py instructions ##

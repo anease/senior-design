@@ -72,29 +72,27 @@
     </div>
 
     <div class="resultDiv">
-        <h1> Fact Check Rating </h1>
+        <h1> Error </h1>
    
 
         <div style="display: inline-flex;">
             <div class="fieldBlock">
-                <div class="statementLabel">Statement</div>
+                <div class="statementLabel"></div>
                 <!-- TODO: Dynamic statement from backend -->
-                <div class="statement" id="statementText">{data}</div>
+                <div class="statement">
+                  
+                  This could mean that no statement was detected. Make sure you are submitting a full sentence to the fact-checker. <br><br>
+                  
+                  <!-- Add more error conditions here-->
+
+                </div>
             </div>
             
-            <div class="fieldBlock">
-                <div class="statementLabel">Rating</div>
-                <!-- TODO: Dynamic rating from backend -->
-                <!-- Add rating condition to change color red/green/yellow for each rating value -->
-                <div class="rating" style="color: red;">FALSE</div>
-            </div>
-            
+          
         </div>
 
 
     </div>
-    <!-- link to non-persistent background script -->
-    <script src="result.js" type="text/javascript"></script>
 
   </body>
 

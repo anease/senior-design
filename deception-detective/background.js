@@ -30,15 +30,34 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
         
         })
         .then(function(response) {
-          // Converting response to text (could change this to JSON)
-          return response.text(); 
+          // Converting response object to JSON
+          return response.json(); 
         }).then(function(data) {
           // This is the converted response data that we will use
           console.log(data); 
+
+          // Conditions to display error page instead of result page
+          if (data.statementsParsed == 0){
+            chrome.tabs.create({url: chrome.extension.getURL("error-page.html")})
+          }
+          
+          else {
+            chrome.tabs.create({url: chrome.extension.getURL("result-page.html")},
+                      
+                      // Really funky workaround to inject data from API into the result page HTML
+                      function(tab){
+                        var selfTabId = tab.id;
+                        chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+                            if (changeInfo.status == "complete" && tabId == selfTabId){
+                                // send the data to the page's script:
+                                var tabs = chrome.extension.getViews({type: "tab"});
+                                tabs[0].injectResultData(info.selectionText);
+                            }
+                        });
+            });
+
+          }
+
         });
-
-
-        chrome.tabs.create({url: chrome.extension.getURL("result-page.html")})
-
 
 });

@@ -161,8 +161,10 @@ class Search_n_Scraper:
         return Snopes_Site(statement, title, descrip, author, pub_date, site_url, claim, rating, rating_whatsTrue, rating_whatsFalse, origin)
         
 
-grab_Snopes = Search_n_Scraper()
-sites = grab_Snopes.snopes_search("Diet Coke Button")
+# grab_Snopes = Search_n_Scraper()
+# sites = grab_Snopes.snopes_search("Diet Coke Button")
 
-for i in sites:
-    i.print()
+# sites[0].print()
+
+# # for i in sites:
+# #     i.print()

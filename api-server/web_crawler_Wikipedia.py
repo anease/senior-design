@@ -141,7 +141,7 @@ class Crawler:
         return self.res
 
 
-crawler = Crawler()
-site = crawler.wiki_search('Algebra')
-crawler.crawl(site)
+# crawler = Crawler()
+# site = crawler.wiki_search('Algebra')
+# crawler.crawl(site)
 
