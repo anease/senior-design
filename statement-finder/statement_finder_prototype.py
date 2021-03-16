@@ -166,55 +166,36 @@ def atomic_find_statements(text):
 def run_tests():
     # Test 1: [noun] is [adjective]
     test1 = "Granny Smith apples are green. Do you like Granny Smith apples?"
-    output1 = ["granny smith apples are green"]
-    print(test1)
-    print(atomic_find_statements(test1))
-    # if atomic_find_statements(test1) == output1:
-    #     print("Test 1 successful")
-    # else:
-    #     print("Test 1 failed")
+    output1 = ["granny smith apple green"]
+    if atomic_find_statements(test1) == output1:
+        print("Test 1 successful")
+    else:
+        print("Test 1 failed")
 
     # Test 2: Questions, commands, and exclamations
     test2 = "Good morning! Who might you be? Sit up straight!"
     output2 = []
-    print(test2)
-    print(atomic_find_statements(test2))
-    # if atomic_find_statements(test2) == output2:
-    #     print("Test 2 successful")
-    # else:
-    #     print("Test 2 failed")
+    if atomic_find_statements(test2) == output2:
+        print("Test 2 successful")
+    else:
+        print("Test 2 failed")
 
     # Test 3: [noun] has [object]
     test3 = "Timmy owns 3 different cars. His Honda Civic has good gas mileage."
-    output3 = ["timmy owns 3 different cars", "timmy honda civic has good gas mileage"]
-    print(test3)
-    print(atomic_find_statements(test3))
-    # if atomic_find_statements(test3) == output3:
-    #     print("Test 3 successful")
-    # else:
-    #     print("Test 3 failed")
+    output3 = ["timmy owns 3 different car", "timmy honda civic good gas mileage"]
+    if atomic_find_statements(test3) == output3:
+        print("Test 3 successful")
+    else:
+        print("Test 3 failed")
 
     # Test 4: [subject] does [action] | [subject] causes [action]
     test4 = "Cheetahs run very fast. They run fast because of evolution."
-    output4 = ["cheetahs run very fast", "cheetahs run fast because of evolution"]
-    print(test4)
-    print(atomic_find_statements(test4))
-    # if atomic_find_statements(test4) == output4:
-    #     print("Test 4 successful")
-    # else:
-    #     print("Test 4 failed")
+    output4 = ["cheetah run fast", "cheetah run fast evolution"]
+    if atomic_find_statements(test4) == output4:
+        print("Test 4 successful")
+    else:
+        print("Test 4 failed")
 
-    ### Test 5 is no longer a valid test because opinions are not being filtered out by this tool
-    # Test 5: Opinions
-    test5 = "I like pizza. Pepperoni is my favorite pizza topping."
-    output5 = []
-    print(test5)
-    print(atomic_find_statements(test5))
-    # if atomic_find_statements(test5) == output5:
-    #     print("Test 5 successful")
-    # else:
-    #     print("Test 5 failed")
-    # return
 
 run_tests() #tests need to be updated to match new specification of returning clean text
 
