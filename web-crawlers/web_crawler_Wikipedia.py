@@ -39,7 +39,7 @@ class Crawler:
             return None
         return BeautifulSoup(req.text, 'html.parser')
         
-    ### Filter functions that cross reference strings with a list of 
+    # Filter functions that cross reference strings with a list of 
     #       preselected strings
     def apply_nonmemb_filter(self, strn, filter_str):
         bl = True
@@ -69,7 +69,7 @@ class Crawler:
             
             grabbed_content = self.scrape_wiki(bs, statement)
             return Wiki_Site(grabbed_content[0], grabbed_content[1], grabbed_content[2], grabbed_content[3], False)
-        #print(str(bs.html).split('\n')[0])
+
 
 
     # This function is designed to scrape the text and links from a Wikipedida page
@@ -102,13 +102,11 @@ class Crawler:
     # This function is designed to scrape the links from a Wikipedia search results page
     def scrape_searchResults(self, bs_site, statement):
         retrieved_links = []
-
         links = bs_site.find_all('a')
 
         # Filtering happens here
         for i in links:
             if str(i).find("data-serp-pos=\"") != -1:
-                #print(self.url + str(i).split("\"")[3])
                 retrieved_links.append(self.url + str(i).split("\"")[3])
                 
         return [statement, None, None, retrieved_links]
@@ -117,7 +115,6 @@ class Crawler:
     #   found on that page. If the page is search results, each linked result
     #   is crawled+scraped through
     def crawl(self, incept_site):
-        # Determines whether the inception point is search results or wiki page
         if incept_site.page_type_tag is True:
             self.visited.append(incept_site.links[0])
             bs = self.getPage(incept_site.links[0])
@@ -142,6 +139,8 @@ class Crawler:
 
 
 crawler = Crawler()
-site = crawler.wiki_search('Algebra')
-crawler.crawl(site)
+site = crawler.wiki_search('Algebra is fun')
+#site.print()
+
+#crawler.crawl(site)
 
