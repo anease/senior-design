@@ -51,7 +51,9 @@ chrome.contextMenus.onClicked.addListener(function(info, tab) {
                             if (changeInfo.status == "complete" && tabId == selfTabId){
                                 // send the data to the page's script:
                                 var tabs = chrome.extension.getViews({type: "tab"});
-                                tabs[0].injectResultData(info.selectionText);
+
+                               tabs[0].injectResultData(info.selectionText, data);
+   
                             }
                         });
             });

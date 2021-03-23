@@ -14,10 +14,9 @@ def factCheck():
     if request.method == 'POST':
 
         foundOnSnopes = False
-       
 
         statementArray = atomic_find_statements(request.json['data'])
-        print(statementArray)
+
 
         # If a full statement cannot be parsed return immediately
         if len(statementArray) == 0:
@@ -31,21 +30,21 @@ def factCheck():
             snopesCrawl = Search_n_Scraper()
 
             for x in statementArray:
-                # site = wikiCrawl.wiki_search(x)
-                # wikiCrawl.crawl(site)
-                # print(wikiCrawl)
-
+                wikiSite = wikiCrawl.wiki_search(x)
+                wikiCrawl.crawl(wikiSite)
+ 
                 snopesSites = snopesCrawl.snopes_search(x)
-                print(snopesSites)
-
 
             if len(snopesSites) > 0:
                 foundOnSnopes = True
 
             return jsonify(
                 foundOnSnopes = foundOnSnopes,
-                email="emoia",
-                id="asdffgfa"
+                snopes = snopesSites[0].url,
+                rating = snopesSites[0].rating,
+                true = snopesSites[0].rating_whatsTrue,
+                false = snopesSites[0].rating_whatsFalse,
+                wiki = wikiCrawl.visited[0]
             )
 
 

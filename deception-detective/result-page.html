@@ -40,8 +40,8 @@
 
       .fieldBlock {
         /* background-color: rgb(200, 200, 200); */
-        width: 30rem;
-        padding: 10px;
+        /* width: 30rem; */
+        padding: 10px; 
         }
 
       .statementLabel {
@@ -52,11 +52,6 @@
 
       .statement {
         /* overflow: scroll; */
-        font-family: Courier, monospace;
-        font-size: initial;
-      }
-
-      .rating {
         font-family: Courier, monospace;
         font-size: initial;
       }
@@ -75,21 +70,38 @@
         <h1> Fact Check Rating </h1>
    
 
-        <div style="display: inline-flex;">
-            <div class="fieldBlock">
+        <!-- <div style="display: inline-flex;"> -->
+            <div class="fieldBlock" style="padding-bottom: 3rem;">
                 <div class="statementLabel">Statement</div>
-                <!-- TODO: Dynamic statement from backend -->
                 <div class="statement" id="statementText">{data}</div>
             </div>
             
             <div class="fieldBlock">
-                <div class="statementLabel">Rating</div>
-                <!-- TODO: Dynamic rating from backend -->
-                <!-- Add rating condition to change color red/green/yellow for each rating value -->
-                <div class="rating" style="color: red;">FALSE</div>
+                <div class="statementLabel">Snopes Rating</div>
+                <div class="statement" id="snopesRating">{snopesRating}</div>
+            </div>
+
+            <div class="fieldBlock">
+              <div class="statementLabel">What's True</div>
+              <div class="statement" id="whatsTrue">{whatsTrue}</div>
+            </div>
+
+            <div class="fieldBlock">
+              <div class="statementLabel">What's False</div>
+              <div class="statement" id="whatsFalse">{whatsFalse}</div>
+            </div>
+
+            <div class="fieldBlock">
+              <div class="statementLabel">Snopes</div>
+              <div class="statement" id="snopesLink">{snopesLink}</div>
+            </div>
+
+            <div class="fieldBlock">
+              <div class="statementLabel">Wikipedia</div>
+              <div class="statement" id="wiki">{wiki}</div>
             </div>
             
-        </div>
+        <!-- </div> -->
 
 
     </div>
