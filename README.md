@@ -51,6 +51,6 @@ Our team is developing a browser extension that will allow users to quickly iden
   
 - [Midterm Presentation (YouTube)](https://youtu.be/DVbeR4Ez9uc)
 
-- [Expo Poster](expo-presentation/DeceptionDetective.pdf)
+- [Expo Poster (PDF)](expo-presentation/ExpoPoster.pdf)
 
 - [Expo Presentation (YouTube)](https://www.youtube.com/watch?v=biNK3sTQTkQ)
