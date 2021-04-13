@@ -2,7 +2,7 @@
 ## ***Senior Design // CS 2020-2021***
 
 ## Project Description
-Our team is developing a browser extension that will allow users to quickly identify and fact-check statments found in text on webpages.
+Deception Detective is a Google Chrome extension that makes fact-checking online simple. Questionable statements are processed and compared against resources such as Snopes and Wikipedia to either provide a "factual rating" or topical information for the user to investigate further.
 
 ## Team Members
 *Click Names to view Professional Biographies*
@@ -40,12 +40,17 @@ Our team is developing a browser extension that will allow users to quickly iden
   
 - [Budget](budget.md)
   
-- [Design Diagrams](homework/design-diagrams/design-diagrams.pdf)
+- [Design Diagrams](design-diagrams/design-diagrams.pdf)
+
+- [Test Plans](test_plans.md)
   
 - Self-Assessment Essays
-  - [Andrew Self-Assessment](homework/assignment-3-individual-assessment/andrew-self-assessment.pdf)
-  - [Lando Self-Assessment](homework/assignment-3-individual-assessment/lando-self-assessment.pdf)
-  - [Daniel Self-Assessment](homework/assignment-3-individual-assessment/daniel-self-assessment.pdf)
+  - [Andrew Initial Self-Assessment](self-assessments/initial-self-assessments/andrew-self-assessment.pdf)
+  - [Lando Initial Self-Assessment](self-assessments/initial-self-assessments/lando-self-assessment.pdf)
+  - [Daniel Initial Self-Assessment](self-assessments/initial-self-assessments/daniel-self-assessment.pdf)
+  - [Andrew Final Self-Assessment](self-assessments/final-self-assessments/andrew-self-assessment.pdf)
+  - [Lando Final Self-Assessment](self-assessments/final-self-assessments/lando-self-assessment.pdf)
+  - [Daniel Final Self-Assessment](self-assessments/final-self-assessments/daniel-self-assessment.pdf)
   
 - [Midterm Presentation (PDF)](midterm-presentation/midterm-presentation.pdf)
   
