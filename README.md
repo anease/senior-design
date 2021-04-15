@@ -24,38 +24,33 @@ Deception Detective is a Google Chrome extension that makes fact-checking online
   
   - Email: huyg@ucmail.uc.edu
 
-## User Documentation
-- [Documentation Hub](documentation/README.md)
 
 ## Table of Contents
-- [Timeline / Milestones](timeline.md)
-  
-- [Tasklist](tasklist.md)
-  
-- [Effort Matrix](effort_matrix.md)
-  
-- [User Stories](user_stories.md)
-  
-- [Project Contstraints](major_constraints.md)
-  
-- [Budget](budget.md)
-  
-- [Design Diagrams](design-diagrams/design-diagrams.pdf)
 
-- [Test Plans](test_plans.md)
-  
-- Self-Assessment Essays
-  - [Andrew Initial Self-Assessment](self-assessments/initial-self-assessments/andrew-self-assessment.pdf)
-  - [Lando Initial Self-Assessment](self-assessments/initial-self-assessments/lando-self-assessment.pdf)
-  - [Daniel Initial Self-Assessment](self-assessments/initial-self-assessments/daniel-self-assessment.pdf)
-  - [Andrew Final Self-Assessment](self-assessments/final-self-assessments/andrew-self-assessment.pdf)
-  - [Lando Final Self-Assessment](self-assessments/final-self-assessments/lando-self-assessment.pdf)
-  - [Daniel Final Self-Assessment](self-assessments/final-self-assessments/daniel-self-assessment.pdf)
-  
-- [Midterm Presentation (PDF)](midterm-presentation/midterm-presentation.pdf)
-  
-- [Midterm Presentation (YouTube)](https://youtu.be/DVbeR4Ez9uc)
+- [User Interface Sepcification]()
 
+- [Test Plans and Results]()
+
+- [User Manual](documentation/README.md)
+
+- Summary of Hours and Justification
+  - [Andrew Hours and Justification]()
+  - [Lando Hours and Justification]()
+  - [Daniel Hours and Justification]()
+
+  
+- Self-Assessments
+  - Initial Assessments
+    - [Andrew Initial Self-Assessment](self-assessments/initial-self-assessments/andrew-self-assessment.pdf)
+    - [Lando Initial Self-Assessment](self-assessments/initial-self-assessments/lando-self-assessment.pdf)
+    - [Daniel Initial Self-Assessment](self-assessments/initial-self-assessments/daniel-self-assessment.pdf)
+  - Final Assessments
+    - [Andrew Final Self-Assessment](self-assessments/final-self-assessments/andrew-self-assessment.pdf)
+    - [Lando Final Self-Assessment](self-assessments/final-self-assessments/lando-self-assessment.pdf)
+    - [Daniel Final Self-Assessment](self-assessments/final-self-assessments/daniel-self-assessment.pdf)
+  
 - [Expo Poster (PDF)](expo-presentation/ExpoPoster.pdf)
 
-- [Expo Presentation (YouTube)](https://www.youtube.com/watch?v=biNK3sTQTkQ)
+- [Expo Presentation Slides (PDF)](expo-presentation/DeceptionDetective.pdf)
+
+- [Expo Presentation Video (YouTube)](https://www.youtube.com/watch?v=biNK3sTQTkQ)
