@@ -131,3 +131,25 @@ The overall goal of our testing plan is to ensure that the tool acts as expected
 | CE2 | Normal | Whitebox | Functional | Integration |
 | CE3 | Normal | Whitebox | Functional | Integration |
 | CE4 | Normal | Whitebox | Functional | Integration |
+
+<br>
+
+# Part 4: Results
+
+| Name | Result | Notes |
+| --- | --- | --- |
+| WS1 | Fail | The web scraper was removed from the scope of the project |
+| WS2 | Fail | The web scraper was removed from the scope of the project |
+| SF1 | Pass |  |
+| SF2 | Fail | The opinion filtering functionality was moved from the statement finder tool to the fact-checker tool |
+| SF3 | Pass |  |
+| SF4 | Pass |  |
+| SF5 | Pass |  |
+| CE1 | Pass |  |
+| CE2 | Fail | The full-page fact check feature was removed from the scope of the project |
+| CE3 | Pass |  |
+| CE4 | Pass |  |
+
+<br>
+
+The only tests which failed were those associated with features that were either removed from the scope of the project or had their functionality moved to a different area of the project. All tests were run as modules within their respective code bases.

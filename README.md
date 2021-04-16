@@ -29,7 +29,7 @@ Deception Detective is a Google Chrome extension that makes fact-checking online
 
 - [User Interface Specification](ui_spec.md)
 
-- [Test Plans and Results]()
+- [Test Plans and Results](test_plans.md)
 
 - [User Manual](documentation/README.md)
 
