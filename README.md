@@ -36,7 +36,7 @@ Deception Detective is a Google Chrome extension that makes fact-checking online
 - Summary of Hours and Justification
   - [Andrew Hours and Justification]()
   - [Lando Hours and Justification]()
-  - [Daniel Hours and Justification]()
+  - [Daniel Hours and Justification](hours_summary_daniel.md)
 
 - Self-Assessments
   - Initial Assessments
