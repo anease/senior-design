@@ -6,7 +6,7 @@
 - 10 hours: Async Team Project Planning
 - 15 hours: Team Meetings
 - 10 hours: Research Google Chrome Extensions
-- 5 hours: Prototype User Interfaces
+- 10 hours: Prototype User Interfaces
 - Total: 45 hours
 - Justification: The majority of the Fall was spent ideating and planning with the team. I spent some time researching the capabilities of Google Chrome extensions and protoyping what the interface of our application could look like within this browser.
 
